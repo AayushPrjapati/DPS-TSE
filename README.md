@@ -1,6 +1,6 @@
 # Joint Mixture-Guided Diffusion for Target Speech Extraction (TSE)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AayushPrjapati/DPS-TSE/blob/main/demo.ipynb)
+[💻 Colab Demo](https://colab.research.google.com/github/AayushPrjapati/DPS-TSE/blob/main/demo.ipynb)
 
 This repository contains the code for **Joint Mixture Guidance (V1)**, a training-free hybrid framework for Target Speech Extraction (TSE). 
 
@@ -75,14 +75,6 @@ Here is what we tried, step-by-step, before arriving at the final V1 framework:
    * *Limitation:* Restored natural envelope, but leaked the background/interfering talker.
 5. **Masked Guidance on Mixture (Joint Mixture Guidance - V1)**
    * *Result:* Best of both worlds. We only guide the prior on active target speaker zones, letting it denoise freely elsewhere. Natural texture (+0.345 DNSMOS), minimal distortions, and stable speaker identity.
-
----
-
-## 💻 Colab Demo
-
-Run the target speech extraction pipeline in your browser with a single click (no local setup required):
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AayushPrjapati/DPS-TSE/blob/main/demo.ipynb)
 
 ---
 
