@@ -18,25 +18,33 @@ We run target speech extraction in two phases:
 2. **Phase 2 (Generative Refinement):** The initial approximation is refined using reverse diffusion. An $L_2$ guidance loss binds the trajectories to the mixture envelope *only* within the active speech mask.
 
 ```mermaid
-graph TD
-    subgraph Phase 1: Discriminative Extraction
-        A["Acoustic Mixture & Enrollment Cue"] --> B["TFGridNet Front-End"]
-        B --> C["Initial Speech Estimate (Robotic/Artifacts)"]
-    end
+graph LR
+    A1["Mixture y_mix(t)"]
+    A2["Enrollment Cue c_s"]
+    B["TSE Model f_φ"]
+    C["Output y_disc(t)"]
+    D["Mask Block M(t)"]
+    E["DM Model s_θ(x_t, t)"]
+    F["DPS (Posterior Update)"]
+    G["Final Speech x_0"]
 
-    subgraph Phase 2: Generative Refinement
-        C --> D["Masked Mixture Guidance Loss"]
-        A --> D
-        D --> E["Diffusion Prior (ArrayDPS)"]
-        E --> F["Refined Target Speech (Natural & Clean)"]
-    end
+    A1 --> B
+    A2 --> B
+    B --> C
+    C --> D
+    A1 --> D
+    D --> F
+    E --> F
+    F --> G
 
-    style A fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
+    style A1 fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
+    style A2 fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
     style B fill:#294873,stroke:#3f669a,stroke-width:1px,color:#ffffff
     style C fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
     style D fill:#205030,stroke:#317042,stroke-width:1px,color:#ffffff
     style E fill:#8a7322,stroke:#ab8f2f,stroke-width:1px,color:#ffffff
-    style F fill:#9a5e1a,stroke:#bc762b,stroke-width:1px,color:#ffffff
+    style F fill:#7209b7,stroke:#9225e3,stroke-width:1px,color:#ffffff
+    style G fill:#9a5e1a,stroke:#bc762b,stroke-width:1px,color:#ffffff
 ```
 
 ---
