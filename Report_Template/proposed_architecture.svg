@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="100%" height="100%">
+  <defs>
+    <!-- Drop Shadow Filter -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
+      <feOffset dx="0" dy="4" />
+      <feComponentTransfer><feFuncA type="linear" slope="0.1" /></feComponentTransfer>
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Gradients -->
+    <linearGradient id="grad-input" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3F4F6" />
+      <stop offset="100%" stop-color="#E5E7EB" />
+    </linearGradient>
+    <linearGradient id="grad-disc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="grad-gen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#6D28D9" />
+    </linearGradient>
+    <linearGradient id="grad-guide" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="grad-output" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+
+    <!-- Markers for Arrows -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+    </marker>
+    <marker id="arrow-guide" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10B981" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <!-- Flowchart Title -->
+  <text x="30" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#111827">Proposed Joint Mixture-Guided TSE Pipeline</text>
+
+  <!-- ==================== STAGE 1: INPUTS ==================== -->
+  <g transform="translate(30, 80)" filter="url(#shadow)">
+    <!-- Raw Mixture -->
+    <rect x="0" y="20" width="150" height="60" rx="8" fill="url(#grad-input)" stroke="#D1D5DB" stroke-width="1.5" />
+    <text x="15" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#374151">Acoustic Mixture</text>
+    <text x="15" y="65" font-family="monospace" font-size="12" fill="#6B7280">y_mix = s1 + s2 + n</text>
+
+    <!-- Enrollment Cue -->
+    <rect x="0" y="140" width="150" height="60" rx="8" fill="url(#grad-input)" stroke="#D1D5DB" stroke-width="1.5" />
+    <text x="15" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#374151">Enrollment Cue</text>
+    <text x="15" y="185" font-family="monospace" font-size="12" fill="#6B7280">c_s (Target Voice)</text>
+  </g>
+
+  <!-- ==================== STAGE 2: DISCRIMINATIVE ==================== -->
+  <g transform="translate(240, 80)" filter="url(#shadow)">
+    <!-- Audio Chunking -->
+    <rect x="0" y="20" width="160" height="60" rx="8" fill="url(#grad-disc)" />
+    <text x="15" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">Audio Chunking</text>
+    <text x="15" y="65" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#E0F2FE">Temporal Windowing</text>
+
+    <!-- TFGridNet -->
+    <rect x="0" y="140" width="160" height="60" rx="8" fill="url(#grad-disc)" />
+    <text x="15" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">TFGridNet Extractor</text>
+    <text x="15" y="185" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#E0F2FE">Target Feature Fusion</text>
+  </g>
+
+  <!-- ==================== STAGE 3: INTERMEDIATE ==================== -->
+  <g transform="translate(460, 80)" filter="url(#shadow)">
+    <!-- Extracted Target -->
+    <rect x="0" y="140" width="160" height="60" rx="8" fill="url(#grad-input)" stroke="#3B82F6" stroke-width="1.5" />
+    <text x="15" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#1E3A8A">Extracted Target</text>
+    <text x="15" y="185" font-family="monospace" font-size="12" fill="#2563EB">y_disc (Robotic)</text>
+
+    <!-- Target Mask -->
+    <rect x="0" y="260" width="160" height="60" rx="8" fill="url(#grad-input)" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="4,4" />
+    <text x="15" y="285" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#1E3A8A">Target Mask</text>
+    <text x="15" y="305" font-family="monospace" font-size="12" fill="#2563EB">M (Energy Gate)</text>
+  </g>
+
+  <!-- ==================== STAGE 4: GENERATIVE ==================== -->
+  <g transform="translate(680, 80)" filter="url(#shadow)">
+    <!-- ArrayDPS Prior -->
+    <rect x="0" y="140" width="160" height="60" rx="8" fill="url(#grad-gen)" />
+    <text x="15" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">ArrayDPS Prior</text>
+    <text x="15" y="185" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#F5F3FF">Clean 1D Diffusion</text>
+
+    <!-- Joint Guidance -->
+    <rect x="-10" y="250" width="180" height="80" rx="8" fill="url(#grad-guide)" />
+    <text x="10" y="275" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">Joint Guidance</text>
+    <text x="10" y="295" font-family="monospace" font-size="11" fill="#D1FAE5">L2 target match (M=1)</text>
+    <text x="10" y="315" font-family="monospace" font-size="11" fill="#D1FAE5">ReLU mix envelope (1-M)</text>
+  </g>
+
+  <!-- ==================== STAGE 5: OUTPUT ==================== -->
+  <g transform="translate(900, 220)" filter="url(#shadow)">
+    <rect x="0" y="0" width="70" height="60" rx="8" fill="url(#grad-output)" />
+    <path d="M 25 15 L 45 30 L 25 45 Z" fill="#FFFFFF" />
+    <text x="5" y="-10" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#D97706" text-anchor="middle" transform="translate(35, 0)">Final Output</text>
+  </g>
+
+  <!-- ==================== ARROWS & CONNECTORS ==================== -->
+  <!-- y_mix -> Chunking -->
+  <path d="M 180 130 L 232 130" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+  
+  <!-- c_s -> TFGridNet -->
+  <path d="M 180 250 L 232 250" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Chunking -> TFGridNet -->
+  <path d="M 320 160 L 320 212" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- TFGridNet -> y_disc -->
+  <path d="M 400 250 L 452 250" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- y_disc -> Target Mask -->
+  <path d="M 540 280 L 540 332" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- y_disc -> ArrayDPS (Noise Injection Arrow) -->
+  <path d="M 620 250 L 672 250" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="646" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#6B7280" text-anchor="middle">Add Noise</text>
+
+  <!-- Target Mask -> Joint Guidance -->
+  <path d="M 620 370 L 662 370" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Joint Guidance -> ArrayDPS Prior (Upward Correction Loop) -->
+  <path d="M 760 330 L 760 298" fill="none" stroke="#10B981" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrow-guide)" />
+  <text x="765" y="318" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="bold" fill="#047857">Score Gradients</text>
+
+  <!-- y_mix -> Joint Guidance (Bypassing line) -->
+  <path d="M 105 160 L 105 450 L 760 450 L 760 418" fill="none" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow)" />
+  <text x="430" y="445" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#4B5563" text-anchor="middle">Mixture Envelope Constraint (|y_mix|)</text>
+
+  <!-- ArrayDPS -> Final Output -->
+  <path d="M 840 250 L 892 250" fill="none" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow)" />
+</svg>

@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="100%" height="100%">
+  <!-- Background Canvas -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <!-- Flowchart Title -->
+  <text x="30" y="45" font-family="'Times New Roman', Times, serif" font-size="18" font-style="italic" font-weight="bold" fill="#000000">Fig. 1. Block diagram of the proposed joint mixture-guided target speech extraction framework.</text>
+
+  <!-- Markers for Arrows -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000" />
+    </marker>
+    <marker id="dashed-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000" />
+    </marker>
+  </defs>
+
+  <!-- ==================== STAGE 1: INPUTS ==================== -->
+  <g transform="translate(30, 80)">
+    <!-- Raw Mixture -->
+    <rect x="0" y="20" width="150" height="60" rx="0" fill="#FFFFFF" stroke="#000000" stroke-width="1.2" />
+    <text x="75" y="45" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="middle">Acoustic Mixture</text>
+    <text x="75" y="65" font-family="'Times New Roman', Times, serif" font-size="12" font-style="italic" fill="#000000" text-anchor="middle">y_mix(t)</text>
+
+    <!-- Enrollment Cue -->
+    <rect x="0" y="140" width="150" height="60" rx="0" fill="#FFFFFF" stroke="#000000" stroke-width="1.2" />
+    <text x="75" y="165" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="middle">Enrollment Cue</text>
+    <text x="75" y="185" font-family="'Times New Roman', Times, serif" font-size="12" font-style="italic" fill="#000000" text-anchor="middle">c_s(t)</text>
+  </g>
+
+  <!-- ==================== STAGE 2: DISCRIMINATIVE ==================== -->
+  <g transform="translate(240, 80)">
+    <!-- Audio Chunking -->
+    <rect x="0" y="20" width="160" height="60" rx="0" fill="#F9FAFB" stroke="#000000" stroke-width="1.2" />
+    <text x="80" y="45" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="middle">Temporal Windowing</text>
+    <text x="80" y="65" font-family="'Times New Roman', Times, serif" font-size="11" fill="#333333" text-anchor="middle">(Sliding-Window)</text>
+
+    <!-- TFGridNet -->
+    <rect x="0" y="140" width="160" height="60" rx="0" fill="#F9FAFB" stroke="#000000" stroke-width="1.2" />
+    <text x="80" y="165" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="middle">Discriminative TSE</text>
+    <text x="80" y="185" font-family="'Times New Roman', Times, serif" font-size="11" fill="#333333" text-anchor="middle">TFGridNet f_φ(·)</text>
+  </g>
+
+  <!-- ==================== STAGE 3: INTERMEDIATE ==================== -->
+  <g transform="translate(460, 80)">
+    <!-- Extracted Target -->
+    <rect x="0" y="140" width="160" height="60" rx="0" fill="#FFFFFF" stroke="#000000" stroke-width="1.2" />
+    <text x="80" y="165" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="middle">Extracted Estimate</text>
+    <text x="80" y="185" font-family="'Times New Roman', Times, serif" font-size="12" font-style="italic" fill="#000000" text-anchor="middle">y_disc(t)</text>
+
+    <!-- Target Mask -->
+    <rect x="0" y="260" width="160" height="60" rx="0" fill="#FFFFFF" stroke="#000000" stroke-width="1.2" stroke-dasharray="3,3" />
+    <text x="80" y="285" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="middle">Target Mask</text>
+    <text x="80" y="305" font-family="'Times New Roman', Times, serif" font-size="12" font-style="italic" fill="#000000" text-anchor="middle">M(t, f)</text>
+  </g>
+
+  <!-- ==================== STAGE 4: GENERATIVE ==================== -->
+  <g transform="translate(680, 80)">
+    <!-- ArrayDPS Prior -->
+    <rect x="0" y="140" width="160" height="60" rx="0" fill="#F9FAFB" stroke="#000000" stroke-width="1.2" />
+    <text x="80" y="165" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="middle">Generative Refinement</text>
+    <text x="80" y="185" font-family="'Times New Roman', Times, serif" font-size="11" fill="#333333" text-anchor="middle">ArrayDPS Prior s_θ(·)</text>
+
+    <!-- Joint Guidance -->
+    <rect x="-10" y="250" width="180" height="80" rx="0" fill="#FFFFFF" stroke="#000000" stroke-width="1.2" />
+    <text x="80" y="275" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="middle">Joint Mixture Guidance</text>
+    <text x="80" y="295" font-family="'Times New Roman', Times, serif" font-size="11" fill="#333333" text-anchor="middle">L2 Target Guidance (M)</text>
+    <text x="80" y="315" font-family="'Times New Roman', Times, serif" font-size="11" fill="#333333" text-anchor="middle">ReLU Inequality (1 - M)</text>
+  </g>
+
+  <!-- ==================== STAGE 5: OUTPUT ==================== -->
+  <g transform="translate(900, 220)">
+    <rect x="0" y="0" width="70" height="60" rx="0" fill="#FFFFFF" stroke="#000000" stroke-width="1.5" />
+    <text x="35" y="25" font-family="'Times New Roman', Times, serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="middle">Output</text>
+    <text x="35" y="45" font-family="'Times New Roman', Times, serif" font-size="12" font-style="italic" fill="#000000" text-anchor="middle">x_0(t)</text>
+  </g>
+
+  <!-- ==================== ARROWS & CONNECTORS ==================== -->
+  <!-- y_mix -> Chunking -->
+  <path d="M 180 130 L 232 130" fill="none" stroke="#000000" stroke-width="1" marker-end="url(#arrow)" />
+  
+  <!-- c_s -> TFGridNet -->
+  <path d="M 180 250 L 232 250" fill="none" stroke="#000000" stroke-width="1" marker-end="url(#arrow)" />
+
+  <!-- Chunking -> TFGridNet -->
+  <path d="M 320 160 L 320 212" fill="none" stroke="#000000" stroke-width="1" marker-end="url(#arrow)" />
+
+  <!-- TFGridNet -> y_disc -->
+  <path d="M 400 250 L 452 250" fill="none" stroke="#000000" stroke-width="1" marker-end="url(#arrow)" />
+
+  <!-- y_disc -> Target Mask -->
+  <path d="M 540 280 L 540 332" fill="none" stroke="#000000" stroke-width="1" marker-end="url(#arrow)" />
+
+  <!-- y_disc -> ArrayDPS (Noise Injection) -->
+  <path d="M 620 250 L 672 250" fill="none" stroke="#000000" stroke-width="1" marker-end="url(#arrow)" />
+  <text x="646" y="242" font-family="'Times New Roman', Times, serif" font-size="9" fill="#000000" text-anchor="middle">Init (σ = 0.5)</text>
+
+  <!-- Target Mask -> Joint Guidance -->
+  <path d="M 620 370 L 662 370" fill="none" stroke="#000000" stroke-width="1" marker-end="url(#arrow)" />
+
+  <!-- Joint Guidance -> ArrayDPS (Feedback Loop) -->
+  <path d="M 760 330 L 760 298" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#dashed-arrow)" />
+  <text x="765" y="318" font-family="'Times New Roman', Times, serif" font-size="9" fill="#000000">∇_x L_guidance</text>
+
+  <!-- y_mix -> Joint Guidance (Bypassing boundary line) -->
+  <path d="M 105 160 L 105 440 L 760 440 L 760 418" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow)" />
+  <text x="430" y="435" font-family="'Times New Roman', Times, serif" font-size="10" fill="#000000" text-anchor="middle">Physical envelope constraint: |x_0| &lt;= |y_mix|</text>
+
+  <!-- ArrayDPS -> Output -->
+  <path d="M 840 250 L 892 250" fill="none" stroke="#000000" stroke-width="1" marker-end="url(#arrow)" />
+</svg>

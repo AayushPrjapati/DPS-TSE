@@ -1,0 +1,13 @@
+# Core Machine Learning & Audio
+torch>=1.12.0
+numpy>=1.20.0
+soundfile>=0.10.0
+librosa>=0.9.0
+soxr>=0.3.0
+
+# Model Configurations & Utilities
+pyyaml
+dotmap
+hyperpyyaml
+tqdm
+huggingface_hub
