@@ -19,32 +19,42 @@ We run target speech extraction in two phases:
 
 ```mermaid
 graph LR
-    A1["Mixture y_mix(t)"]
-    A2["Enrollment Cue c_s"]
-    B["TSE Model f_φ"]
-    C["Output y_disc(t)"]
-    D["Mask Block M(t)"]
-    E["DM Model s_θ(x_t, t)"]
-    F["DPS (Posterior Update)"]
-    G["Final Speech x_0"]
+    A1["y_mix(t)"]
+    A2["Enrollment c_s"]
+    B["TSE f_φ (TFGridNet)"]
+    C["y_disc(t)"]
+    D["Mask M(t)"]
+    E["Masked Mixture"]
+    F["Likelihood Score"]
+    G["Prior Score"]
+    H["DM s_θ(x_t, t)"]
+    I["Posterior Score Update"]
+    J["x_0"]
 
     A1 --> B
     A2 --> B
     B --> C
     C --> D
-    A1 --> D
-    D --> F
+    D --> E
+    A1 --> E
     E --> F
-    F --> G
+    H --> G
+    F --> I
+    G --> I
+    C -->|init x_T| I
+    I --> J
 
-    style A1 fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
-    style A2 fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
-    style B fill:#294873,stroke:#3f669a,stroke-width:1px,color:#ffffff
-    style C fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
-    style D fill:#205030,stroke:#317042,stroke-width:1px,color:#ffffff
-    style E fill:#8a7322,stroke:#ab8f2f,stroke-width:1px,color:#ffffff
-    style F fill:#7209b7,stroke:#9225e3,stroke-width:1px,color:#ffffff
-    style G fill:#9a5e1a,stroke:#bc762b,stroke-width:1px,color:#ffffff
+    style A1 fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#fff
+    style A2 fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#fff
+    style B fill:#294873,stroke:#3f669a,stroke-width:1px,color:#fff
+    style C fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#fff
+    style D fill:#205030,stroke:#317042,stroke-width:1px,color:#fff
+    style E fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#fff
+    style F fill:#0096c7,stroke:#1aa8d7,stroke-width:1px,color:#fff
+    style G fill:#0096c7,stroke:#1aa8d7,stroke-width:1px,color:#fff
+    style H fill:#8a7322,stroke:#ab8f2f,stroke-width:1px,color:#fff
+    style I fill:#7209b7,stroke:#9225e3,stroke-width:1px,color:#fff
+    style J fill:#9a5e1a,stroke:#bc762b,stroke-width:1px,color:#fff
 ```
 
 ---
