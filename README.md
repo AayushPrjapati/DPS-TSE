@@ -78,8 +78,8 @@ The final Joint Mixture Guidance framework was developed by iteratively trying d
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/DPS_TSE-Github.git
-cd DPS_TSE-Github
+git clone https://github.com/AayushPrjapati/DPS-TSE.git
+cd DPS-TSE
 ```
 
 ### 2. Install Dependencies
