@@ -20,7 +20,7 @@ The end-to-end framework operates in two distinct phases:
 1. **Phase 1 (Discriminative Extraction):** The raw mixture and target speaker's enrollment cue are processed in sliding windows by the TFGridNet front-end to yield an initial, structured target voice approximation.
 2. **Phase 2 (Generative Refinement):** The initial approximation is refined using reverse diffusion steps. The guidance loss guides the denoising process, matching the original mixture envelope inside the target speech mask.
 
-![System Pipeline Architecture](Report_Template/proposed_architecture_research_final.svg)
+![System Pipeline Architecture](assets/architecture.svg)
 
 ---
 
@@ -38,7 +38,7 @@ The code is organized to keep the main working files clean at the root level, wh
     *   [`ArrayDPS/`](ArrayDPS): Diffusion prior model backbone code.
     *   [`usef_tse_code/`](usef_tse_code): Discriminative model backbone code.
     *   [`test_samples/`](test_samples): WAV files for demo/testing.
-    *   [`Report_Template/`](Report_Template): LaTeX report files and SVG diagram figures.
+    *   [`assets/`](assets): System pipeline architecture diagram assets.
 *   **[`previous_versions/`](previous_versions):** Grouped scripts corresponding to your 5 development stages:
     *   **`01_Discriminative_Only/`**: Scripts to run discriminative TFGridNet baseline.
     *   **`02_Prior_Only/`**: Reconstructs speech using only the diffusion prior (no guidance).
