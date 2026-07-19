@@ -46,6 +46,9 @@ def check_and_download_checkpoints():
             sys.exit(1)
 
 def get_edm_schedule(num_steps, sigma_min, sigma_max, rho):
+    sigma_min = float(sigma_min)
+    sigma_max = float(sigma_max)
+    rho = float(rho)
     steps = torch.arange(num_steps, dtype=torch.float32)
     t_steps = (sigma_max ** (1 / rho) + steps / (num_steps - 1) * (sigma_min ** (1 / rho) - sigma_max ** (1 / rho))) ** rho
     return torch.cat([t_steps, torch.zeros_like(t_steps[:1])])
@@ -119,6 +122,17 @@ def main():
     with open(config_path, 'r') as f:
         gen_args = yaml.safe_load(f)
     gen_args = DotMap(gen_args)
+
+    # Force all diffusion parameters to float to bypass scientific notation string-parsing differences
+    for key in gen_args.diffusion_parameters.keys():
+        val = gen_args.diffusion_parameters[key]
+        if val is not None and val != 'None':
+            try:
+                gen_args.diffusion_parameters[key] = float(val)
+            except:
+                pass
+    if hasattr(gen_args.diffusion_parameters, 'sigma_data'):
+        gen_args.diffusion_parameters.sigma_data = float(gen_args.diffusion_parameters.sigma_data)
 
     # Load models
     gen_model = UNet1d(gen_args.unet_wav, device).to(device)
