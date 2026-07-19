@@ -147,4 +147,4 @@ Summary of performance on the Libri2Mix 8kHz test dataset. Our Proposed V1 is co
 ---
 
 ## 🎓 Acknowledgment
-Done under mentor **Dr. Hemant Patil** at the **Speech Research Laboratory (SRL), DAU**. We thank the Speech Research Lab team and the SRI program.
+Done under mentor **Dr. Hemant Patil** at the **Speech Research Laboratory (SRL), DAU**.Thanks to the Speech Research Lab team and the SRI program.
