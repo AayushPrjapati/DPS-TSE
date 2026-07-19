@@ -11,3 +11,4 @@ dotmap
 hyperpyyaml
 tqdm
 huggingface_hub
+python_speech_features
