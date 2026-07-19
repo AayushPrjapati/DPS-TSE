@@ -1,116 +1,111 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 310" width="100%" height="100%" style="background-color: #ffffff; font-family: system-ui, -apple-system, sans-serif;">
   <defs>
-    <!-- Grayscale Spectrogram Gradient for a clean paper look -->
-    <linearGradient id="gray-spec-grad" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="40%" stop-color="#E5E7EB" />
-      <stop offset="70%" stop-color="#9CA3AF" />
-      <stop offset="100%" stop-color="#1F2937" />
-    </linearGradient>
-
-    <!-- Marker for black arrows -->
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#000000" />
+    <!-- Arrow Marker -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#b0b0b0"/>
     </marker>
   </defs>
 
-  <!-- Background Canvas -->
-  <rect width="100%" height="100%" fill="#FFFFFF" />
-
-  <!-- ==================== GRAYSCALE SPECTROGRAMS ==================== -->
+  <!-- BACKGROUND GRID EFFECT (SUBTLE) -->
+  <rect width="1020" height="310" fill="#ffffff"/>
   
-  <!-- Left Spectrogram Stack (Mixture Y) -->
-  <g transform="translate(40, 60)">
-    <rect x="-10" y="-10" width="110" height="70" rx="0" fill="url(#gray-spec-grad)" stroke="#000000" stroke-width="0.8" />
-    <rect x="-5" y="-5" width="110" height="70" rx="0" fill="url(#gray-spec-grad)" stroke="#000000" stroke-width="0.8" />
-    <rect x="0" y="0" width="110" height="70" rx="0" fill="url(#gray-spec-grad)" stroke="#000000" stroke-width="1.2" />
-    <!-- Axis lines -->
-    <line x1="0" y1="70" x2="110" y2="70" stroke="#000000" stroke-width="1" />
-    <line x1="0" y1="0" x2="0" y2="70" stroke="#000000" stroke-width="1" />
-  </g>
-
-  <!-- Middle Spectrogram Stack (Extracted X) -->
-  <g transform="translate(340, 60)">
-    <rect x="-5" y="-5" width="110" height="70" rx="0" fill="url(#gray-spec-grad)" stroke="#000000" stroke-width="0.8" />
-    <rect x="0" y="0" width="110" height="70" rx="0" fill="url(#gray-spec-grad)" stroke="#000000" stroke-width="1.2" />
-    <!-- Axis lines -->
-    <line x1="0" y1="70" x2="110" y2="70" stroke="#000000" stroke-width="1" />
-    <line x1="0" y1="0" x2="0" y2="70" stroke="#000000" stroke-width="1" />
-  </g>
-
-  <!-- Right Spectrogram Stack (Refined X_final) -->
-  <g transform="translate(840, 60)">
-    <rect x="-5" y="-5" width="110" height="70" rx="0" fill="url(#gray-spec-grad)" stroke="#000000" stroke-width="0.8" />
-    <rect x="0" y="0" width="110" height="70" rx="0" fill="url(#gray-spec-grad)" stroke="#000000" stroke-width="1.2" />
-    <!-- Axis lines -->
-    <line x1="0" y1="70" x2="110" y2="70" stroke="#000000" stroke-width="1" />
-    <line x1="0" y1="0" x2="0" y2="70" stroke="#000000" stroke-width="1" />
-  </g>
-
-  <!-- ==================== BLOCKS (Black & White, Times Serif) ==================== -->
+  <!-- CONNECTIONS / ARROWS -->
+  <!-- Acoustic Mixture & Enrollment Cue to TFGridNet -->
+  <path d="M 130 105 H 155 V 140 H 174" fill="none" stroke="#d0d0d0" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 130 195 H 155 V 160 H 174" fill="none" stroke="#d0d0d0" stroke-width="2" marker-end="url(#arrow)"/>
   
-  <!-- Discriminative Model -->
-  <g transform="translate(180, 65)">
-    <rect x="0" y="0" width="130" height="60" rx="0" fill="#FFFFFF" stroke="#000000" stroke-width="1.2" />
-    <text x="65" y="28" font-family="'Times New Roman', Times, serif" font-size="13" font-weight="bold" fill="#000000" text-anchor="middle">Discriminative</text>
-    <text x="65" y="45" font-family="'Times New Roman', Times, serif" font-size="13" fill="#000000" text-anchor="middle">Model <tspan font-style="italic">f</tspan><tspan font-size="10" dy="2">φ</tspan><tspan font-size="13" dy="-2">(·)</tspan></text>
-  </g>
-
-  <!-- Target Mask Estimator -->
-  <g transform="translate(480, 65)">
-    <rect x="0" y="0" width="140" height="60" rx="0" fill="#FFFFFF" stroke="#000000" stroke-width="1.2" />
-    <text x="70" y="28" font-family="'Times New Roman', Times, serif" font-size="13" font-weight="bold" fill="#000000" text-anchor="middle">Target Mask</text>
-    <text x="70" y="45" font-family="'Times New Roman', Times, serif" font-size="13" fill="#000000" text-anchor="middle">Estimator</text>
-  </g>
-
-  <!-- Joint Guided Diffusion Prior -->
-  <g transform="translate(680, 65)">
-    <rect x="0" y="0" width="130" height="60" rx="0" fill="#FFFFFF" stroke="#000000" stroke-width="1.2" />
-    <text x="65" y="28" font-family="'Times New Roman', Times, serif" font-size="13" font-weight="bold" fill="#000000" text-anchor="middle">Joint Guided</text>
-    <text x="65" y="45" font-family="'Times New Roman', Times, serif" font-size="13" fill="#000000" text-anchor="middle">Diffusion Prior</text>
-  </g>
-
-  <!-- ==================== LABELS & CAPTIONS ==================== -->
+  <!-- TFGridNet to Extracted Speech -->
+  <path d="M 330 150 H 354" fill="none" stroke="#d0d0d0" stroke-width="2" marker-end="url(#arrow)"/>
   
-  <!-- Left Caption -->
-  <text x="95" y="155" font-family="'Times New Roman', Times, serif" font-size="13" fill="#000000" text-anchor="middle">Acoustic Mixture <tspan font-weight="bold">y</tspan><tspan font-size="10" dy="2">mix</tspan></text>
-
-  <!-- Middle Caption -->
-  <text x="395" y="155" font-family="'Times New Roman', Times, serif" font-size="13" fill="#000000" text-anchor="middle">Extracted Speech <tspan font-weight="bold">y</tspan><tspan font-size="10" dy="2">disc</tspan></text>
-
-  <!-- Right Caption -->
-  <text x="895" y="155" font-family="'Times New Roman', Times, serif" font-size="13" fill="#000000" text-anchor="middle">Refined Speech <tspan font-weight="bold">x</tspan><tspan font-size="10" dy="2">final</tspan></text>
-
-  <!-- Figure Caption -->
-  <text x="500" y="295" font-family="'Times New Roman', Times, serif" font-size="14" fill="#000000" text-anchor="middle"><tspan font-weight="bold">Fig. 1.</tspan> Block diagram of the proposed joint mixture-guided target speech extraction pipeline.</text>
-
-  <!-- ==================== ARROWS (Black & White Style) ==================== -->
+  <!-- Extracted Speech to Mask Generator -->
+  <path d="M 420 125 V 101" fill="none" stroke="#d0d0d0" stroke-width="2" marker-end="url(#arrow)"/>
   
-  <!-- Left Spec -> Discriminative Model -->
-  <path d="M 152 95 L 178 95" fill="none" stroke="#000000" stroke-width="1.2" marker-end="url(#arrow)" />
-
-  <!-- Discriminative Model -> Middle Spec -->
-  <path d="M 312 95 L 338 95" fill="none" stroke="#000000" stroke-width="1.2" marker-end="url(#arrow)" />
-
-  <!-- Middle Spec -> Target Mask Estimator -->
-  <path d="M 452 95 L 478 95" fill="none" stroke="#000000" stroke-width="1.2" marker-end="url(#arrow)" />
-
-  <!-- Target Mask Estimator -> Generative Refinement (M) -->
-  <path d="M 622 95 L 678 95" fill="none" stroke="#000000" stroke-width="1.2" marker-end="url(#arrow)" />
-  <text x="650" y="87" font-family="'Times New Roman', Times, serif" font-size="12" font-style="italic" fill="#000000" text-anchor="middle">M</text>
-
-  <!-- Generative Refinement -> Right Spec -->
-  <path d="M 812 95 L 838 95" fill="none" stroke="#000000" stroke-width="1.2" marker-end="url(#arrow)" />
-
-  <!-- Top Loop: Middle Spec -> Generative Refinement (diffusion initialization) -->
-  <path d="M 395 50 L 395 20 L 745 20 L 745 62" fill="none" stroke="#000000" stroke-width="1.2" marker-end="url(#arrow)" />
-  <text x="570" y="14" font-family="'Times New Roman', Times, serif" font-size="12" fill="#000000" text-anchor="middle"><tspan font-style="italic">y</tspan><tspan font-size="10" dy="2">disc</tspan><tspan font-size="12" dy="-2"> for diffusion initialization</tspan></text>
-
-  <!-- Bottom Loop 1: Left Spec -> Target Mask Estimator -->
-  <path d="M 95 132 L 95 220 L 550 220 L 550 128" fill="none" stroke="#000000" stroke-width="1.2" marker-end="url(#arrow)" />
+  <!-- Mask Generator to Masked Mixture -->
+  <path d="M 480 67.5 H 504" fill="none" stroke="#d0d0d0" stroke-width="2" marker-end="url(#arrow)"/>
   
-  <!-- Bottom Loop 2: Left Spec -> Generative Refinement -->
-  <path d="M 95 220 L 745 220 L 745 128" fill="none" stroke="#000000" stroke-width="1.2" marker-end="url(#arrow)" />
-  <text x="320" y="214" font-family="'Times New Roman', Times, serif" font-size="12" fill="#000000" text-anchor="middle"><tspan font-style="italic">y</tspan><tspan font-size="10" dy="2">mix</tspan><tspan font-size="12" dy="-2"> for envelope likelihood constraint</tspan></text>
+  <!-- Acoustic Mixture to Masked Mixture (Top path) -->
+  <path d="M 70 80 V 15 H 570 V 34" fill="none" stroke="#d0d0d0" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Masked Mixture to Likelihood Score -->
+  <path d="M 630 67.5 H 664" fill="none" stroke="#d0d0d0" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Likelihood Score & Prior Score to Posterior Score Update -->
+  <path d="M 735 95 V 114" fill="none" stroke="#d0d0d0" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 735 205 V 186" fill="none" stroke="#d0d0d0" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Prior Block to Prior Score -->
+  <path d="M 570 252.5 H 664" fill="none" stroke="#d0d0d0" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Posterior Score Update to Final Speech Output -->
+  <path d="M 800 150 H 854" fill="none" stroke="#d0d0d0" stroke-width="2" marker-end="url(#arrow)"/>
 
+  <!-- NODES -->
+  
+  <!-- Acoustic Mixture (y_mix) -->
+  <rect x="10" y="80" width="120" height="50" rx="3" fill="#121212" stroke="#000000" stroke-width="1.5"/>
+  <text x="70" y="105" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">
+    <tspan x="70" dy="0">Acoustic Mixture</tspan>
+    <tspan x="70" dy="16" font-size="11" font-weight="normal" fill="#e0e0e0">y_mix</tspan>
+  </text>
+  
+  <!-- Enrollment Cue (c_s) -->
+  <rect x="10" y="170" width="120" height="50" rx="3" fill="#121212" stroke="#000000" stroke-width="1.5"/>
+  <text x="70" y="195" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">
+    <tspan x="70" dy="0">Enrollment Cue</tspan>
+    <tspan x="70" dy="16" font-size="11" font-weight="normal" fill="#e0e0e0">c_s</tspan>
+  </text>
+
+  <!-- Discriminative Model (TFGridNet) -->
+  <rect x="180" y="120" width="150" height="60" rx="8" fill="#1d2d44" stroke="#132030" stroke-width="1.5"/>
+  <text x="255" y="147" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">
+    <tspan x="255" dy="0">Discriminative Model</tspan>
+    <tspan x="255" dy="16" font-size="11" font-weight="normal" fill="#d0d8e0">(TFGridNet)</tspan>
+  </text>
+
+  <!-- Extracted Speech (y_disc) -->
+  <rect x="360" y="125" width="120" height="50" rx="3" fill="#121212" stroke="#000000" stroke-width="1.5"/>
+  <text x="420" y="150" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">
+    <tspan x="420" dy="0">Extracted Speech</tspan>
+    <tspan x="420" dy="16" font-size="11" font-weight="normal" fill="#e0e0e0">y_disc</tspan>
+  </text>
+
+  <!-- Mask Generator M(t) -->
+  <rect x="360" y="40" width="120" height="55" rx="8" fill="#1f3a22" stroke="#142616" stroke-width="1.5"/>
+  <text x="420" y="67" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">
+    <tspan x="420" dy="0">Mask Generator</tspan>
+    <tspan x="420" dy="16" font-size="11" font-weight="normal" fill="#d5e8d4">M(t)</tspan>
+  </text>
+
+  <!-- Masked Mixture -->
+  <rect x="510" y="40" width="120" height="55" rx="3" fill="#121212" stroke="#000000" stroke-width="1.5"/>
+  <text x="570" y="72" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Masked Mixture</text>
+
+  <!-- Prior Block (DM) s_theta(x_t, t) -->
+  <rect x="440" y="225" width="130" height="55" rx="8" fill="#6a5200" stroke="#4a3900" stroke-width="1.5"/>
+  <text x="505" y="252" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">
+    <tspan x="505" dy="0">Prior Block (DM)</tspan>
+    <tspan x="505" dy="16" font-size="11" font-weight="normal" fill="#ffeaa7">s_θ(x_t, t)</tspan>
+  </text>
+
+  <!-- Likelihood Score -->
+  <rect x="670" y="40" width="130" height="55" rx="8" fill="#1a82c4" stroke="#125c8b" stroke-width="1.5"/>
+  <text x="735" y="72" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Likelihood Score</text>
+
+  <!-- Prior Score -->
+  <rect x="670" y="205" width="130" height="55" rx="8" fill="#1a82c4" stroke="#125c8b" stroke-width="1.5"/>
+  <text x="735" y="237" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Prior Score</text>
+
+  <!-- Posterior Score Update -->
+  <rect x="670" y="120" width="130" height="60" rx="8" fill="#3e273f" stroke="#271828" stroke-width="1.5"/>
+  <text x="735" y="147" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">
+    <tspan x="735" dy="0">Posterior Score</tspan>
+    <tspan x="735" dy="16">Update</tspan>
+  </text>
+
+  <!-- Final Speech Output (x_0) -->
+  <rect x="860" y="125" width="150" height="50" rx="3" fill="#5a3e00" stroke="#3d2a00" stroke-width="1.5"/>
+  <text x="935" y="150" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">
+    <tspan x="935" dy="0">Final Speech Output</tspan>
+    <tspan x="935" dy="16" font-size="11" font-weight="normal" fill="#ffeaa7">x_0</tspan>
+  </text>
 </svg>
