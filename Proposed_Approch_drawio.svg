@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 258" style="font-family: Helvetica, Arial, sans-serif; background: #fff;">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#444"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════ CONNECTIONS ═══════════ -->
+
+  <!-- y_mix → TFGridNet (converge at x=145) -->
+  <path d="M 125,82 H 145 V 124 H 168" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <!-- c_s → TFGridNet -->
+  <path d="M 125,188 H 145 V 138 H 168" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- TFGridNet → y_disc -->
+  <path d="M 300,131 H 340" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- y_disc → Mask M(t) (upward) -->
+  <path d="M 390,112 V 72" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- y_mix → Masked Mixture (bypass across top) -->
+  <path d="M 70,62 V 12 H 532 V 30" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Mask M(t) → Masked Mixture -->
+  <path d="M 440,50 H 478" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Masked Mixture → Likelihood Score -->
+  <path d="M 586,50 H 624" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- DM → Prior Score -->
+  <path d="M 587,221 H 624" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Likelihood Score → Posterior Score Update (downward) -->
+  <path d="M 678,70 V 107" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Prior Score → Posterior Score Update (upward) -->
+  <path d="M 678,200 V 155" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- y_disc ──init x_T──→ Posterior Score Update (routed below main flow) -->
+  <path d="M 390,152 V 172 H 618 V 131 H 624" fill="none" stroke="#444" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#ah)"/>
+  <text x="500" y="167" fill="#555" font-size="10" font-style="italic" text-anchor="middle">init x_T</text>
+
+  <!-- Posterior Score Update → x_0 -->
+  <path d="M 742,131 H 790" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ═══════════ NODES ═══════════ -->
+
+  <!-- y_mix(t) -->
+  <rect x="15" y="62" width="110" height="40" rx="3" fill="#222" stroke="#111" stroke-width="1"/>
+  <text x="70" y="80" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">
+    <tspan x="70" dy="0">y</tspan><tspan font-size="9" dy="3">mix</tspan><tspan font-size="12" dy="-3">(t)</tspan>
+  </text>
+
+  <!-- c_s -->
+  <rect x="15" y="168" width="110" height="40" rx="3" fill="#222" stroke="#111" stroke-width="1"/>
+  <text x="70" y="191" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Enrollment c_s</text>
+
+  <!-- f_φ (TFGridNet) -->
+  <rect x="168" y="107" width="132" height="48" rx="4" fill="#1d2d44" stroke="#13233c" stroke-width="1"/>
+  <text x="234" y="128" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">
+    <tspan x="234" dy="0">TSE f_φ</tspan>
+    <tspan x="234" dy="15" font-size="10.5" font-weight="400" fill="#c0cfe0">(TFGridNet)</tspan>
+  </text>
+
+  <!-- y_disc(t) -->
+  <rect x="340" y="112" width="100" height="40" rx="3" fill="#222" stroke="#111" stroke-width="1"/>
+  <text x="390" y="136" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">y_disc(t)</text>
+
+  <!-- Mask M(t) -->
+  <rect x="340" y="30" width="100" height="40" rx="4" fill="#1f3a22" stroke="#142616" stroke-width="1"/>
+  <text x="390" y="54" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Mask M(t)</text>
+
+  <!-- Masked Mixture -->
+  <rect x="478" y="30" width="108" height="40" rx="3" fill="#222" stroke="#111" stroke-width="1"/>
+  <text x="532" y="47" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">
+    <tspan x="532" dy="0">Masked</tspan>
+    <tspan x="532" dy="14">Mixture</tspan>
+  </text>
+
+  <!-- Likelihood Score -->
+  <rect x="624" y="30" width="108" height="40" rx="4" fill="#1a6fa0" stroke="#125580" stroke-width="1"/>
+  <text x="678" y="47" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">
+    <tspan x="678" dy="0">Likelihood</tspan>
+    <tspan x="678" dy="14">Score</tspan>
+  </text>
+
+  <!-- DM s_θ(x_t, t) -->
+  <rect x="455" y="200" width="132" height="42" rx="4" fill="#6a5200" stroke="#4a3900" stroke-width="1"/>
+  <text x="521" y="218" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">
+    <tspan x="521" dy="0">DM s_θ(x_t, t)</tspan>
+  </text>
+
+  <!-- Prior Score -->
+  <rect x="624" y="200" width="108" height="40" rx="4" fill="#1a6fa0" stroke="#125580" stroke-width="1"/>
+  <text x="678" y="224" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Prior Score</text>
+
+  <!-- Posterior Score Update -->
+  <rect x="624" y="107" width="118" height="48" rx="4" fill="#4a2060" stroke="#331445" stroke-width="1"/>
+  <text x="683" y="127" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">
+    <tspan x="683" dy="0">Posterior Score</tspan>
+    <tspan x="683" dy="14">Update</tspan>
+  </text>
+
+  <!-- Final Speech Output x_0 -->
+  <rect x="790" y="112" width="140" height="40" rx="3" fill="#6b4310" stroke="#4a2f0b" stroke-width="1"/>
+  <text x="860" y="130" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">
+    <tspan x="860" dy="0">Final Output</tspan>
+    <tspan x="860" dy="14" font-size="12">x_0</tspan>
+  </text>
+</svg>

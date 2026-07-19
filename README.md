@@ -59,27 +59,6 @@ graph LR
 
 ---
 
-## 📂 Repository Structure
-
-* **Root Level:**
-  * [`run_v1_inference.py`](run_v1_inference.py): The main script to run the full Phase 1 + Phase 2 pipeline. Auto-downloads model weights if missing.
-  * [`results/`](results): Benchmark tables matching the report:
-    * [`T_100_Clean/`](results/T_100_Clean): Evaluation results on clean Libri2Mix with 100 diffusion steps.
-    * [`T_250_Clean/`](results/T_250_Clean): Sub-optimal intermediate run with 250 steps.
-    * [`T_400_Clean/`](results/T_400_Clean): Evaluation results with 400 diffusion steps (best WER).
-    * [`Noisy_Environment/`](results/Noisy_Environment): Evaluation results on noisy Libri2Mix.
-  * [`ArrayDPS/`](ArrayDPS): Diffusion prior backbone.
-  * [`usef_tse_code/`](usef_tse_code): Discriminative backbone.
-  * [`test_samples/`](test_samples): A couple of sample audio files to test the code.
-* **[`previous_versions/`](previous_versions):** Archive of our intermediate experimental scripts:
-  * **`01_Discriminative_Only/`**: TFGridNet baseline.
-  * **`02_Prior_Only/`**: Reconstructing speech using only diffusion (no guidance).
-  * **`03_Likelihood_on_Disc/`**: Guidance loss on the masked discriminative output.
-  * **`04_Likelihood_on_Mix/`**: Guidance loss on the raw unmasked mixture.
-  * **`05_Likelihood_on_Masked_Mix/`**: Precursor scripts to the final masked mixture guidance.
-
----
-
 ## 📈 Our Experimental Journey
 
 Here is what we tried, step-by-step, before arriving at the final V1 framework:
