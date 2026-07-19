@@ -78,6 +78,14 @@ Here is what we tried, step-by-step, before arriving at the final V1 framework:
 
 ---
 
+## 💻 Colab Demo
+
+Run the target speech extraction pipeline in your browser with a single click (no local setup required):
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AayushPrjapati/DPS-TSE/blob/main/demo.ipynb)
+
+---
+
 ## 🛠️ Setup & Usage
 
 ### 1. Clone & Install
