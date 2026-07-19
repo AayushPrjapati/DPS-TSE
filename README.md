@@ -18,42 +18,25 @@ We run target speech extraction in two phases:
 2. **Phase 2 (Generative Refinement):** The initial approximation is refined using reverse diffusion. An $L_2$ guidance loss binds the trajectories to the mixture envelope *only* within the active speech mask.
 
 ```mermaid
-graph LR
-    A["Acoustic Mixture (y_mix)"]
-    B["Enrollment Cue (c_s)"]
-    C["Discriminative Model<br>(TFGridNet)"]
-    D["Extracted Speech (y_disc)"]
-    E["Mask Generator M(t)"]
-    F["Masked Mixture"]
-    G["Prior Block (DM)<br>s_θ(x_t, t)"]
-    H["Likelihood Score"]
-    I["Prior Score"]
-    J["Posterior Score Update"]
-    K["Final Speech Output (x_0)"]
+graph TD
+    subgraph Phase 1: Discriminative Extraction
+        A["Acoustic Mixture & Enrollment Cue"] --> B["TFGridNet Front-End"]
+        B --> C["Initial Speech Estimate (Robotic/Artifacts)"]
+    end
 
-    A --> C
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    A --> F
-    F --> H
-    G --> I
-    H --> J
-    I --> J
-    J --> K
+    subgraph Phase 2: Generative Refinement
+        C --> D["Masked Mixture Guidance Loss"]
+        A --> D
+        D --> E["Diffusion Prior (ArrayDPS)"]
+        E --> F["Refined Target Speech (Natural & Clean)"]
+    end
 
     style A fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
-    style B fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
-    style C fill:#294873,stroke:#3f669a,stroke-width:1px,color:#ffffff
-    style D fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
-    style E fill:#205030,stroke:#317042,stroke-width:1px,color:#ffffff
-    style F fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
-    style G fill:#8a7322,stroke:#ab8f2f,stroke-width:1px,color:#ffffff
-    style H fill:#0096c7,stroke:#1aa8d7,stroke-width:1px,color:#ffffff
-    style I fill:#0096c7,stroke:#1aa8d7,stroke-width:1px,color:#ffffff
-    style J fill:#7209b7,stroke:#9225e3,stroke-width:1px,color:#ffffff
-    style K fill:#9a5e1a,stroke:#bc762b,stroke-width:1px,color:#ffffff
+    style B fill:#294873,stroke:#3f669a,stroke-width:1px,color:#ffffff
+    style C fill:#1e1e1e,stroke:#3e4451,stroke-width:1px,color:#ffffff
+    style D fill:#205030,stroke:#317042,stroke-width:1px,color:#ffffff
+    style E fill:#8a7322,stroke:#ab8f2f,stroke-width:1px,color:#ffffff
+    style F fill:#9a5e1a,stroke:#bc762b,stroke-width:1px,color:#ffffff
 ```
 
 ---
