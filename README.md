@@ -32,6 +32,7 @@ The code is organized to keep the main working files clean at the root level, wh
     *   [`run_v1_inference.py`](run_v1_inference.py): The main user entry point (Phase 1 + Phase 2 Joint Mixture Guidance). Auto-downloads weights if missing.
     *   [`results/`](results): Evaluation outputs grouped into the three configurations matching the report results tables:
         *   [`T_100_Clean/`](results/T_100_Clean): Results under clean conditions using $T=100$ diffusion steps.
+        *   [`T_250_Clean/`](results/T_250_Clean): Results under clean conditions using $T=250$ diffusion steps (intermediate sub-optimal test run).
         *   [`T_400_Clean/`](results/T_400_Clean): Results under clean conditions using $T=400$ diffusion steps.
         *   [`Noisy_Environment/`](results/Noisy_Environment): Results under noisy conditions using $T=100$ diffusion steps.
     *   [`ArrayDPS/`](ArrayDPS): Diffusion prior model backbone code.
