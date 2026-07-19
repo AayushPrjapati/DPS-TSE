@@ -59,7 +59,7 @@ graph LR
 
 ---
 
-## 📈 Our Experimental Journey
+## 📈 Experimental Journey
 
 Here is what we tried, step-by-step, before arriving at the final V1 framework:
 
