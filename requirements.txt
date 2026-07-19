@@ -24,7 +24,6 @@ transformers
 
 # Speech Metric Evaluation
 pesq
-pypesq
 pystoi
 torchmetrics
 jiwer

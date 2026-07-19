@@ -7,7 +7,12 @@ import numpy as np
 from tqdm import tqdm
 from mir_eval.separation import bss_eval_sources
 from hyperpyyaml import load_hyperpyyaml
-from pypesq import pesq
+try:
+    from pesq import pesq as official_pesq
+    def pesq(ref, deg, fs):
+        return official_pesq(fs, ref, deg, 'nb')
+except ImportError:
+    from pypesq import pesq
 from utils.average import AverageVal
 from torch.utils.data import DataLoader
 from collections import OrderedDict
