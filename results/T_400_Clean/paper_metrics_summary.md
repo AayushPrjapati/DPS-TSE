@@ -9,4 +9,4 @@ The table below shows the exact average performance metrics reported in **Table 
 | **Proposed (Our V1)** (Generative) | G | _12.111_ | _0.825_ | **3.549** | **1.512** | _0.978_ |
 
 * **WER Reduction:** Under $T = 400$ steps, the Proposed V1 model achieves the best Word Error Rate (WER) of **1.512%**, yielding an absolute reduction of **0.150%** over the discriminative TFGridNet baseline.
-* **Logs Reference:** The raw data used to calculate these averages can be found in [`running_averages.csv`](running_averages.csv) and [`individual_results.csv`](individual_results.csv) in this folder.
+* **Logs Reference:** The raw data used to calculate these averages can be found in [`running_averages.csv`](running_averages.csv) and [`final_results.csv`](final_results.csv) in this folder.

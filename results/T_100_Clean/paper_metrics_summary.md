@@ -9,4 +9,4 @@ The table below shows the exact average performance metrics reported in **Table 
 | **Proposed (Our V1)** (Generative) | G | _12.287_ | _0.834_ | **3.546** | _2.445_ | _0.978_ |
 
 * **DNSMOS Boost:** The Proposed V1 model achieves a significant boost of **+0.345** in speech naturalness (DNSMOS) over the discriminative TFGridNet baseline, while maintaining high speaker similarity and intelligibility.
-* **Logs Reference:** The raw data used to calculate these averages can be found in [`running_averages.csv`](running_averages.csv) and [`individual_results.csv`](individual_results.csv) in this folder.
+* **Logs Reference:** The raw data used to calculate these averages can be found in [`running_averages.csv`](running_averages.csv) and [`final_results.csv`](final_results.csv) in this folder.
