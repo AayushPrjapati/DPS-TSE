@@ -30,7 +30,10 @@ The code is organized to keep the main working files clean at the root level, wh
 
 *   **Root Level:** Holds the final working pipeline, backbones, and data dependencies:
     *   [`run_v1_inference.py`](run_v1_inference.py): The main user entry point (Phase 1 + Phase 2 Joint Mixture Guidance). Auto-downloads weights if missing.
-    *   [`results/`](results): Contains final clean & noisy Libri2Mix evaluation outputs (individual metric logs, running averages, and categorizations).
+    *   [`results/`](results): Evaluation outputs grouped into the three configurations matching the report results tables:
+        *   [`T_100_Clean/`](results/T_100_Clean): Results under clean conditions using $T=100$ diffusion steps.
+        *   [`T_400_Clean/`](results/T_400_Clean): Results under clean conditions using $T=400$ diffusion steps.
+        *   [`Noisy_Environment/`](results/Noisy_Environment): Results under noisy conditions using $T=100$ diffusion steps.
     *   [`ArrayDPS/`](ArrayDPS): Diffusion prior model backbone code.
     *   [`usef_tse_code/`](usef_tse_code): Discriminative model backbone code.
     *   [`test_samples/`](test_samples): WAV files for demo/testing.
@@ -41,7 +44,6 @@ The code is organized to keep the main working files clean at the root level, wh
     *   **`03_Likelihood_on_Disc/`**: Guides diffusion using a likelihood loss on the masked discriminative output.
     *   **`04_Likelihood_on_Mix/`**: Bounds the prior using a likelihood loss directly on the raw unmasked mixture.
     *   **`05_Likelihood_on_Masked_Mix/`**: Development pipeline precursors to the final Joint Mixture Guidance framework.
-    *   **`results_archive/`**: Archive of older intermediate evaluation runs (270-file baseline tests).
 
 ---
 
