@@ -89,10 +89,15 @@ cd DPS-TSE
 pip install -r requirements.txt
 ```
 
-### 2. Run Inference
-You don't need to manually download checkpoint files. The script will automatically fetch `model_ckpt.pt` (3.2GB) and `temp_best.pth.tar` (188MB) if they are missing.
+### 2. Download Model Checkpoints
+Download the model weights (approx 3.4GB total) ahead of time:
+```bash
+python download_checkpoints.py
+```
+*(Note: If you skip this step, the inference script will still download them automatically when first run).*
 
-Run the pipeline on your own files or the test samples:
+### 3. Run Inference
+Run the pipeline on the test samples or your own audio files:
 ```bash
 python run_v1_inference.py --mixture test_samples/LIBRI2MIX_mixture.wav --enrollment test_samples/LIBRI2MIX_s1.wav --output refined_output.wav
 ```
