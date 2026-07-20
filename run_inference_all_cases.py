@@ -187,9 +187,9 @@ def main():
     
     os.makedirs("docs/audio", exist_ok=True)
     
-    # Load ArrayDPS (Phase 2) config once to save overhead
+    # Load DPS-TSE (Phase 2) config once to save overhead
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f"Loading ArrayDPS model on device: {device}...")
+    print(f"Loading DPS-TSE model on device: {device}...")
     config_path = "ArrayDPS/conf/conf_libritts_unet1d_attention_8k.yaml"
     checkpoint_path = "ArrayDPS/model_ckpt.pt"
     
@@ -245,8 +245,8 @@ def main():
         os.replace(disc_tmp, disc_out)
         print(f"Saved Discriminative: {disc_out}")
         
-        # ── PHASE 2: GENERATIVE REFINEMENT (ArrayDPS) ──
-        print("Running Phase 2 (ArrayDPS Generative Refinement)...")
+        # ── PHASE 2: GENERATIVE REFINEMENT (DPS-TSE) ──
+        print("Running Phase 2 (DPS-TSE Generative Refinement)...")
         try:
             run_generative_refinement(mix_out, disc_out, gen_model, diff_parameters, gen_args, gen_out, device)
         except Exception as e:

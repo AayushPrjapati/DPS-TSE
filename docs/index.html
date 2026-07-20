@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USEF-TSE: Universal Speaker Embedding Free Target Speaker Extraction - Audio Demos</title>
-    <meta name="description" content="Audio demonstration and spectrogram showcase page for USEF-TSE (Universal Speaker Embedding Free Target Speaker Extraction).">
+    <title>DPS-TSE: Generative Refinement for Target Speech Extraction using Joint Mixture-Guided Diffusion Priors</title>
+    <meta name="description" content="Audio demonstration and spectrogram showcase page for DPS-TSE: Generative Refinement for Target Speech Extraction using Joint Mixture-Guided Diffusion Priors.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -13,8 +13,8 @@
 <body>
     <header class="header">
         <div class="container">
-            <h1 class="project-title">USEF-TSE: Universal Speaker Embedding Free Target Speaker Extraction</h1>
-            <p class="project-subtitle">Official Audio & Spectrogram Demonstration Showcase</p>
+            <h1 class="project-title">DPS-TSE: Generative Refinement for Target Speech Extraction</h1>
+            <p class="project-subtitle">using Joint Mixture-Guided Diffusion Priors</p>
             
             <div class="badges">
                 <a href="https://arxiv.org/pdf/2409.02615" target="_blank" class="badge badge-pdf" id="btn-paper">
@@ -37,7 +37,7 @@
         <section class="section intro-section">
             <h2>Abstract & Summary</h2>
             <p class="abstract-text">
-                Target Speaker Extraction (TSE) isolates a specific speaker's speech from a multi-speaker mixture utilizing an auxiliary reference utterance of the target speaker. Traditional methods rely heavily on pre-trained speaker embedding extractors, which can lead to information bottlenecks or mismatch issues. <strong>USEF-TSE (Universal Speaker Embedding Free Target Speaker Extraction)</strong> bypasses pre-trained embeddings entirely, establishing an end-to-end extraction architecture that directly correlates raw reference audio features with the mixture representation, resulting in cleaner outputs with fewer distortions and higher phonetic integrity.
+                Target Speaker Extraction (TSE) isolates a specific speaker's speech from a multi-speaker mixture utilizing an auxiliary reference utterance of the target speaker. Traditional methods rely heavily on pre-trained speaker embedding extractors, which can lead to information bottlenecks or mismatch issues. <strong>USEF-TSE (Universal Speaker Embedding Free Target Speaker Extraction)</strong> bypasses pre-trained embeddings entirely, establishing an end-to-end extraction architecture. Furthermore, <strong>DPS-TSE</strong> implements generative refinement via joint mixture-guided diffusion priors, using the discriminative output as a guide to recover missing phonetic detail and eliminate artifacts.
             </p>
         </section>
 
@@ -55,9 +55,9 @@
                     <span class="node-sub">Discriminative Extraction</span>
                 </div>
                 <div class="workflow-arrow">&rarr;</div>
-                <div class="workflow-node">
-                    <span class="node-label">Clean Target Speech</span>
-                    <span class="node-sub">Isolated Output</span>
+                <div class="workflow-node highlight">
+                    <span class="node-label">DPS-TSE Stage</span>
+                    <span class="node-sub">Generative Refinement</span>
                 </div>
             </div>
         </section>
@@ -93,8 +93,8 @@
                             <audio controls src="audio/case1_disc.wav" preload="metadata"></audio>
                         </div>
                         <div class="audio-card highlight">
-                            <span class="audio-label">ArrayDPS (Generative)</span>
-                            <img src="images/case1_gen.png" alt="ArrayDPS Refined Spectrogram" class="spec-img">
+                            <span class="audio-label">DPS-TSE (Generative)</span>
+                            <img src="images/case1_gen.png" alt="DPS-TSE Refined Spectrogram" class="spec-img">
                             <audio controls src="audio/case1_gen.wav" preload="metadata"></audio>
                         </div>
                     </div>
@@ -127,8 +127,8 @@
                             <audio controls src="audio/case2_disc.wav" preload="metadata"></audio>
                         </div>
                         <div class="audio-card highlight">
-                            <span class="audio-label">ArrayDPS (Generative)</span>
-                            <img src="images/case2_gen.png" alt="ArrayDPS Refined Spectrogram" class="spec-img">
+                            <span class="audio-label">DPS-TSE (Generative)</span>
+                            <img src="images/case2_gen.png" alt="DPS-TSE Refined Spectrogram" class="spec-img">
                             <audio controls src="audio/case2_gen.wav" preload="metadata"></audio>
                         </div>
                     </div>
@@ -161,8 +161,8 @@
                             <audio controls src="audio/case3_disc.wav" preload="metadata"></audio>
                         </div>
                         <div class="audio-card highlight">
-                            <span class="audio-label">ArrayDPS (Generative)</span>
-                            <img src="images/case3_gen.png" alt="ArrayDPS Refined Spectrogram" class="spec-img">
+                            <span class="audio-label">DPS-TSE (Generative)</span>
+                            <img src="images/case3_gen.png" alt="DPS-TSE Refined Spectrogram" class="spec-img">
                             <audio controls src="audio/case3_gen.wav" preload="metadata"></audio>
                         </div>
                     </div>
@@ -195,8 +195,8 @@
                             <audio controls src="audio/case4_disc.wav" preload="metadata"></audio>
                         </div>
                         <div class="audio-card highlight">
-                            <span class="audio-label">ArrayDPS (Generative)</span>
-                            <img src="images/case4_gen.png" alt="ArrayDPS Refined Spectrogram" class="spec-img">
+                            <span class="audio-label">DPS-TSE (Generative)</span>
+                            <img src="images/case4_gen.png" alt="DPS-TSE Refined Spectrogram" class="spec-img">
                             <audio controls src="audio/case4_gen.wav" preload="metadata"></audio>
                         </div>
                     </div>
@@ -229,8 +229,8 @@
                             <audio controls src="audio/case5_disc.wav" preload="metadata"></audio>
                         </div>
                         <div class="audio-card highlight">
-                            <span class="audio-label">ArrayDPS (Generative)</span>
-                            <img src="images/case5_gen.png" alt="ArrayDPS Refined Spectrogram" class="spec-img">
+                            <span class="audio-label">DPS-TSE (Generative)</span>
+                            <img src="images/case5_gen.png" alt="DPS-TSE Refined Spectrogram" class="spec-img">
                             <audio controls src="audio/case5_gen.wav" preload="metadata"></audio>
                         </div>
                     </div>
@@ -276,7 +276,7 @@
                             <td>18.2</td>
                         </tr>
                         <tr class="highlight-row">
-                            <td>3. ArrayDPS (Generative Refinement)</td>
+                            <td>3. DPS-TSE (Generative Refinement)</td>
                             <td>14.12</td>
                             <td>13.68</td>
                             <td>3.15</td>
@@ -295,7 +295,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 USEF-TSE Project Team. Official code licensed under CC BY-NC 4.0 License.</p>
+            <p>&copy; 2026 DPS-TSE Project Team. Official code licensed under CC BY-NC 4.0 License.</p>
             <p class="footer-subtext font-mono">Built for GitHub Pages showcase demonstration</p>
         </div>
     </footer>
