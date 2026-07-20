@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPlayingAudio = null;
 
     audioElements.forEach(audio => {
-        const card = audio.closest('.audio-card');
+        const card = audio.closest('.audio-card') || audio.closest('.journey-item');
 
         audio.addEventListener('play', () => {
             // Pause any currently playing track
             if (currentPlayingAudio && currentPlayingAudio !== audio) {
                 currentPlayingAudio.pause();
-                const playingCard = currentPlayingAudio.closest('.audio-card');
+                const playingCard = currentPlayingAudio.closest('.audio-card') || currentPlayingAudio.closest('.journey-item');
                 if (playingCard) {
                     playingCard.classList.remove('active-playing');
                 }

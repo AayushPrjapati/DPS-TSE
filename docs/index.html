@@ -238,6 +238,102 @@
             </div>
         </section>
 
+        <!-- S01 Evolutionary Journey Section -->
+        <section class="section journey-section">
+            <h2>Model Development & Evolutionary Journey (Case S01)</h2>
+            <p class="section-desc">A vertical step-by-step comparison of target speaker extraction showing how the output quality evolves from the raw mixture through baseline discriminative extraction, prior-only diffusion, masked guidance, and finally joint mixture-guided diffusion (DPS-TSE).</p>
+            
+            <div class="journey-list">
+                <!-- 1. Input Mixture -->
+                <div class="journey-item">
+                    <div class="journey-meta">
+                        <span class="journey-step">Step 1</span>
+                        <span class="journey-title">Raw Input Mixture (S01_P01_01)</span>
+                    </div>
+                    <p class="journey-desc">Overlapping speaker mixture containing target and interfering voices.</p>
+                    <div class="journey-media">
+                        <img src="images/journey_mix.png" alt="Raw Input Mixture Spectrogram" class="journey-spec">
+                        <audio controls src="audio/journey_mix.wav" preload="metadata"></audio>
+                    </div>
+                </div>
+
+                <hr class="journey-divider">
+
+                <!-- 2. Reference Cue -->
+                <div class="journey-item">
+                    <div class="journey-meta">
+                        <span class="journey-step">Step 2</span>
+                        <span class="journey-title">Auxiliary Speaker Reference Cue (Enrollment)</span>
+                    </div>
+                    <p class="journey-desc">Clean enrollment speech of the target speaker used to guide extraction.</p>
+                    <div class="journey-media">
+                        <img src="images/journey_cue.png" alt="Reference Cue Spectrogram" class="journey-spec">
+                        <audio controls src="audio/journey_cue.wav" preload="metadata"></audio>
+                    </div>
+                </div>
+
+                <hr class="journey-divider">
+
+                <!-- 3. USEF-TSE WHAMR! Model -->
+                <div class="journey-item">
+                    <div class="journey-meta">
+                        <span class="journey-step">Step 3</span>
+                        <span class="journey-title">Discriminative Baseline (USEF-TSE WHAMR! Model)</span>
+                    </div>
+                    <p class="journey-desc">Output from the Phase 1 discriminative TFGridNet model trained on WHAMR!. Shows initial separation but contains notable artifacts and residual interference.</p>
+                    <div class="journey-media">
+                        <img src="images/journey_whamr.png" alt="USEF-TSE WHAMR Spectrogram" class="journey-spec">
+                        <audio controls src="audio/journey_whamr.wav" preload="metadata"></audio>
+                    </div>
+                </div>
+
+                <hr class="journey-divider">
+
+                <!-- 4. Prior Only Diffusion -->
+                <div class="journey-item">
+                    <div class="journey-meta">
+                        <span class="journey-step">Step 4</span>
+                        <span class="journey-title">Generative Refinement: Prior Only Diffusion</span>
+                    </div>
+                    <p class="journey-desc">Diffusion posterior sampling using only the prior score. Speech sounds natural but lacks correspondence to the target speaker's phonetics, leading to hallucination.</p>
+                    <div class="journey-media">
+                        <img src="images/journey_prior.png" alt="Prior Only Diffusion Spectrogram" class="journey-spec">
+                        <audio controls src="audio/journey_prior.wav" preload="metadata"></audio>
+                    </div>
+                </div>
+
+                <hr class="journey-divider">
+
+                <!-- 5. Masked Guidance -->
+                <div class="journey-item">
+                    <div class="journey-meta">
+                        <span class="journey-step">Step 5</span>
+                        <span class="journey-title">Generative Refinement: Masked Guidance</span>
+                    </div>
+                    <p class="journey-desc">Adds a reconstructed speech loss constraint (masked by speech energy). Prevents target hallucinations but introduces some background noise leak in silent regions.</p>
+                    <div class="journey-media">
+                        <img src="images/journey_masked.png" alt="Masked Guidance Spectrogram" class="journey-spec">
+                        <audio controls src="audio/journey_masked.wav" preload="metadata"></audio>
+                    </div>
+                </div>
+
+                <hr class="journey-divider">
+
+                <!-- 6. Joint Mixture-Guided (DPS-TSE) -->
+                <div class="journey-item highlight-journey">
+                    <div class="journey-meta">
+                        <span class="journey-step">Step 6 (Final)</span>
+                        <span class="journey-title">Joint Mixture-Guided Refinement (DPS-TSE)</span>
+                    </div>
+                    <p class="journey-desc">Our proposed full dual-guidance pipeline. Combines speech energy mask matching with mixture-consistency loss, achieving artifact-free speech separation and optimal similarity.</p>
+                    <div class="journey-media">
+                        <img src="images/journey_guided.png" alt="DPS-TSE Joint Mixture-Guided Spectrogram" class="journey-spec">
+                        <audio controls src="audio/journey_guided.wav" preload="metadata"></audio>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Evaluation Results Section -->
         <section class="section results-section">
             <h2>Quantitative Evaluation</h2>
