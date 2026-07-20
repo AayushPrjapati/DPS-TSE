@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPlayingAudio = null;
 
     audioElements.forEach(audio => {
-        const card = audio.closest('.case-col');
+        const card = audio.closest('.audio-card');
 
         audio.addEventListener('play', () => {
             // Pause any currently playing track
             if (currentPlayingAudio && currentPlayingAudio !== audio) {
                 currentPlayingAudio.pause();
-                const playingCard = currentPlayingAudio.closest('.case-col');
+                const playingCard = currentPlayingAudio.closest('.audio-card');
                 if (playingCard) {
                     playingCard.classList.remove('active-playing');
                 }

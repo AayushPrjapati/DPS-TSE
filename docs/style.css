@@ -12,7 +12,7 @@
     --color-success: #2f855a;       /* Forest green */
     --color-success-light: #f0fff4; /* Light green highlight */
     
-    --border-color: #cbd5e0;        /* Clearer border */
+    --border-color: #cbd5e0;        /* Standard border */
     --border-light: #e2e8f0;
     
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -263,73 +263,59 @@ body {
     margin: 1rem 0;
 }
 
-/* Horizontal Case Grid Table Layout (Mimicking user screenshot) */
-.case-table {
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    overflow: hidden;
+/* Three-Column Card Layout (aligned with user screenshot) */
+.audio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
     margin-top: 0.75rem;
 }
 
-.case-headers {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    background-color: #f3f4f6; /* light grey bar */
-    border-bottom: 1px solid var(--border-color);
-    text-align: center;
-    font-weight: 500;
-    color: var(--text-primary);
-    font-size: 0.95rem;
-}
-
-.header-col {
-    padding: 0.6rem 0.5rem;
-    border-right: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.header-col:last-child {
-    border-right: none;
-}
-
-.case-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+.audio-card {
     background-color: var(--bg-secondary);
-}
-
-.case-col {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0.75rem;
-    border-right: 1px solid var(--border-color);
-    background-color: var(--bg-secondary);
+    gap: 0.75rem;
     transition: var(--transition);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    overflow: hidden; /* Prevents contents from stretching card */
+    min-width: 0;      /* Crucial for flex/grid wrapping inside cards */
 }
 
-.case-col:last-child {
-    border-right: none;
+.audio-card:hover {
+    border-color: var(--border-color);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
 }
 
-.case-col.highlight {
+.audio-card.highlight {
     background-color: var(--color-success-light);
+    border-color: #c6f6d5;
 }
 
-.case-col.active-playing {
+.audio-card.active-playing {
+    border-color: var(--color-accent);
     background-color: var(--color-accent-light);
 }
 
-/* Spectrogram Styling inside Columns */
+.audio-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Spectrogram Image constraints to prevent overflow */
 .spec-img {
     width: 100%;
+    max-width: 100%;       /* Forces image to scale to column width */
     height: auto;
     display: block;
-    margin-bottom: 0.75rem;
     border: 1px solid var(--border-light);
-    border-radius: 2px;
+    border-radius: 3px;
+    background-color: #000000;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 audio {
@@ -434,23 +420,7 @@ audio {
         padding: 0.5rem 0;
     }
     
-    .case-headers, .case-row {
+    .audio-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .header-col {
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        padding: 0.4rem;
-    }
-    
-    .case-col {
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        padding: 1rem 0.5rem;
-    }
-    
-    .case-col:last-child {
-        border-bottom: none;
     }
 }
