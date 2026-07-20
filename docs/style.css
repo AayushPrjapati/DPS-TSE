@@ -144,12 +144,11 @@ body {
     font-size: 1.25rem;
     color: var(--color-primary);
     font-weight: 500;
-    margin-bottom: 1rem;
 }
 
 .section-desc {
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 /* Abstract text */
@@ -219,89 +218,57 @@ body {
     user-select: none;
 }
 
-/* Tabs Header */
-.tabs-header {
+/* Scrolling Showcases List */
+.showcases-list {
     display: flex;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 1.5rem;
-    overflow-x: auto;
-    scrollbar-width: none; /* Hide scrollbar for clean look */
+    flex-direction: column;
+    gap: 2.5rem;
 }
 
-.tabs-header::-webkit-scrollbar {
-    display: none;
+.case-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.tab-button {
-    background: none;
-    border: none;
-    padding: 0.75rem 1.25rem;
-    font-family: var(--font-sans);
+.case-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.case-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    background-color: var(--color-accent-light);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.case-badge.text-green {
+    color: var(--color-success);
+    background-color: var(--color-success-light);
+}
+
+.case-desc-text {
     font-size: 0.95rem;
     color: var(--text-secondary);
-    cursor: pointer;
-    font-weight: 500;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: var(--transition);
+    margin-bottom: 0.5rem;
 }
 
-.tab-button:hover {
-    color: var(--color-accent);
-}
-
-.tab-button.active {
-    color: var(--color-primary);
-    border-bottom-color: var(--color-primary);
-    font-weight: 600;
-}
-
-/* Tab Panels */
-.tab-panel {
-    display: none;
-}
-
-.tab-panel.active {
-    display: block;
-    animation: fadeIn 0.2s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(2px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.showcase-meta {
-    margin-bottom: 1.5rem;
-    background-color: var(--bg-primary);
-    padding: 1rem;
-    border-radius: 4px;
-    border-left: 3px solid var(--color-accent);
-}
-
-.showcase-meta h4 {
-    font-size: 1.05rem;
-    font-family: var(--font-serif);
-    color: var(--color-primary);
-    margin-bottom: 0.25rem;
-}
-
-.showcase-meta p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
+.case-divider {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 0.5rem 0;
 }
 
 /* Audio Showcase Grid */
 .audio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.25rem;
-}
-
-.audio-grid-col-2 {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.5rem;
 }
 
 .audio-card {
@@ -313,7 +280,6 @@ body {
     flex-direction: column;
     gap: 0.75rem;
     transition: var(--transition);
-    position: relative;
 }
 
 .audio-card:hover {
@@ -327,138 +293,40 @@ body {
 
 .audio-card.active-playing {
     border-color: var(--color-accent);
-    outline: 1px solid var(--color-accent);
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: #f7fafc;
 }
 
 .audio-label {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-primary);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 0.35rem;
 }
 
-.info-badge {
-    font-size: 0.75rem;
-    padding: 0.15rem 0.5rem;
-    background-color: var(--border-color);
-    color: var(--text-secondary);
-    border-radius: 3px;
-    text-transform: uppercase;
-    font-weight: 600;
+/* Spectrogram Container & Image */
+.spectrogram-container {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    background-color: #000000; /* dark background behind spectrogram for visual contrast */
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.model-badge {
-    background-color: var(--color-success);
-    color: #ffffff;
+.spectrogram-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    mix-blend-mode: normal;
 }
 
 audio {
     width: 100%;
     height: 38px;
     outline: none;
-}
-
-/* Active Track Visualizer Area */
-.visualizer-section {
-    border-color: var(--color-accent);
-    background-color: #f7fafc;
-}
-
-.visualizer-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.visualizer-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.5rem;
-}
-
-.active-track-name {
-    font-weight: 600;
-    color: var(--color-primary);
-    font-size: 0.95rem;
-}
-
-.active-track-badge {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    background-color: var(--color-accent-light);
-    color: var(--color-accent);
-    padding: 0.15rem 0.5rem;
-    border-radius: 3px;
-}
-
-.canvas-container {
-    background-color: #ffffff;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    overflow: hidden;
-    height: 80px;
-}
-
-#audio-visualizer-canvas {
-    width: 100%;
-    display: block;
-}
-
-.player-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 0.25rem;
-}
-
-.control-btn {
-    background: none;
-    border: 1px solid var(--border-color);
-    background-color: #ffffff;
-    border-radius: 4px;
-    padding: 0.4rem 0.8rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-secondary);
-    transition: var(--transition);
-}
-
-.control-btn:hover {
-    color: var(--color-accent);
-    border-color: var(--color-accent);
-}
-
-.control-btn .icon {
-    width: 16px;
-    height: 16px;
-    fill: currentColor;
-}
-
-.speed-selector {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-}
-
-.speed-dropdown {
-    padding: 0.25rem 0.5rem;
-    border: 1px solid var(--border-color);
-    background-color: #ffffff;
-    border-radius: 4px;
-    font-family: var(--font-sans);
-    cursor: pointer;
 }
 
 /* Formal Quantitative Evaluation Table */
@@ -555,10 +423,5 @@ audio {
     .workflow-arrow {
         transform: rotate(90deg);
         padding: 0.5rem 0;
-    }
-    
-    .tab-button {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.85rem;
     }
 }
