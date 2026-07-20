@@ -6,8 +6,6 @@
 
 This repository contains the code for **Joint Mixture Guidance (V1)**, a training-free hybrid framework for Target Speech Extraction (TSE). 
 
-This project was developed during a **Summer Research Internship (SRI)** at the **Speech Research Laboratory (SRL), DAU** under the guidance of **Dr. Hemant Patil**.
-
 ### What does it do?
 It combines a discriminative model (**TFGridNet**) with a generative diffusion prior (**ArrayDPS**). 
 * **The Problem:** Discriminative models isolate speakers well but introduce digital distortions and make voices sound robotic. Generative priors sound natural, but they tend to hallucinate words or drift into other speakers' voices.
