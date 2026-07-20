@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USEF-TSE: Universal Speaker Embedding Free Target Speaker Extraction - Audio Demos</title>
+    <meta name="description" content="Audio demonstration page for USEF-TSE (Universal Speaker Embedding Free Target Speaker Extraction) showing model separation results on multiple benchmarks.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="project-title">USEF-TSE: Universal Speaker Embedding Free Target Speaker Extraction</h1>
+            <p class="project-subtitle">Official Audio Demonstration Showcase</p>
+            
+            <div class="badges">
+                <a href="https://arxiv.org/pdf/2409.02615" target="_blank" class="badge badge-pdf" id="btn-paper">
+                    <svg viewBox="0 0 24 24" class="icon"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V7h2v2zm6 8h-4v-2h4v2zm0-4h-4v-2h4v2zm0-4h-4V7h4v2z"/></svg>
+                    Paper (arXiv)
+                </a>
+                <a href="https://github.com/ZBang/USEF-TSE" target="_blank" class="badge badge-github" id="btn-github">
+                    <svg viewBox="0 0 24 24" class="icon"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    Code (GitHub)
+                </a>
+                <a href="https://huggingface.co/ZBang/USEF-TSE" target="_blank" class="badge badge-hf" id="btn-huggingface">
+                    <span class="icon emoji">🤗</span>
+                    Checkpoints (HuggingFace)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <section class="section intro-section">
+            <h2>Abstract & Summary</h2>
+            <p class="abstract-text">
+                Target Speaker Extraction (TSE) aims to isolate a specific speaker's speech from a multi-speaker mixture utilizing an auxiliary reference utterance of the target speaker. Traditional methods rely heavily on pre-trained speaker embedding extractors, which can lead to information bottlenecks or mismatch issues. <strong>USEF-TSE (Universal Speaker Embedding Free Target Speaker Extraction)</strong> bypasses pre-trained embeddings entirely, establishing an end-to-end extraction architecture that directly correlates raw reference audio features with the mixture representation, resulting in cleaner outputs with fewer distortions and higher phonetic integrity.
+            </p>
+        </section>
+
+        <section class="section system-workflow">
+            <h2>Extraction Architecture</h2>
+            <p>The system utilizes a multi-stage approach to refine speaker speech from complex mixtures:</p>
+            <div class="workflow-diagram">
+                <div class="workflow-node">
+                    <span class="node-label">Mixed Audio Input</span>
+                    <span class="node-sub">Overlapping Voices</span>
+                </div>
+                <div class="workflow-arrow">&rarr;</div>
+                <div class="workflow-node highlight">
+                    <span class="node-label">USEF-TSE Stage</span>
+                    <span class="node-sub">Discriminative Extraction</span>
+                </div>
+                <div class="workflow-arrow">&rarr;</div>
+                <div class="workflow-node">
+                    <span class="node-label">Clean Target Speech</span>
+                    <span class="node-sub">Isolated Output</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualizer Area -->
+        <section class="section visualizer-section" id="visualizer-container" style="display: none;">
+            <h3>Active Track Visualizer</h3>
+            <div class="visualizer-wrapper">
+                <div class="visualizer-info">
+                    <span class="active-track-name" id="active-track-title">No track playing</span>
+                    <span class="active-track-badge" id="active-track-type">-</span>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="audio-visualizer-canvas" height="80"></canvas>
+                </div>
+                <div class="player-controls">
+                    <button class="control-btn" id="btn-mute" title="Mute/Unmute">
+                        <svg viewBox="0 0 24 24" class="icon"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM12 4L9.91 6.09 12 8.18V4zm-7.8 1.1L2.8 6.5 7.3 11H3v2h4l5 5v-5.18l4.3 4.3c-.58.44-1.23.77-1.95.93v2.06c1.28-.27 2.45-.88 3.42-1.72l2.1 2.1 1.4-1.4L4.2 5.1z"/></svg>
+                    </button>
+                    <div class="speed-selector">
+                        <label for="playback-speed">Speed:</label>
+                        <select id="playback-speed" class="speed-dropdown">
+                            <option value="0.75">0.75x</option>
+                            <option value="1.0" selected>1.0x</option>
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section demo-section">
+            <h2>Interactive Audio Showcases</h2>
+            <p class="section-desc">Listen to the original audio mixtures, the auxiliary enrollment reference (used to identify the target speaker), and the extracted target speech generated by the model.</p>
+            
+            <div class="tabs-header">
+                <button class="tab-button active" data-tab="libri2mix">1. Libri2Mix Benchmark</button>
+                <button class="tab-button" data-tab="real-s01">2. Case S01 (Real)</button>
+                <button class="tab-button" data-tab="real-s21">3. Case S21 (Real)</button>
+                <button class="tab-button" data-tab="hindi-m22">4. Case M22 (Hindi)</button>
+                <button class="tab-button" data-tab="s-series">5. Case S-Series</button>
+            </div>
+
+            <div class="tabs-content">
+                <!-- Tab 1: Libri2Mix -->
+                <div class="tab-panel active" id="tab-libri2mix">
+                    <div class="showcase-meta">
+                        <h4>Libri2Mix Synthetic Mixture</h4>
+                        <p>This sample represents a standard synthetic mixture benchmark. We extract the target speaker <code>s1</code> from the overlapping mixed speech.</p>
+                    </div>
+                    <div class="audio-grid">
+                        <div class="audio-card" data-track-name="Libri2Mix - Mixture" data-track-type="Mixture">
+                            <div class="card-header">
+                                <span class="audio-label">Mixture Speech</span>
+                                <span class="info-badge font-mono">Input</span>
+                            </div>
+                            <audio controls src="audio/LIBRI2MIX_mixture.wav" preload="metadata"></audio>
+                        </div>
+                        <div class="audio-card" data-track-name="Libri2Mix - Reference Speaker s1" data-track-type="Reference">
+                            <div class="card-header">
+                                <span class="audio-label">Reference Target (s1)</span>
+                                <span class="info-badge font-mono">Ground Truth</span>
+                            </div>
+                            <audio controls src="audio/LIBRI2MIX_s1.wav" preload="metadata"></audio>
+                        </div>
+                        <div class="audio-card highlight" data-track-name="Libri2Mix - Extracted Target" data-track-type="Extracted">
+                            <div class="card-header">
+                                <span class="audio-label">Extracted Target</span>
+                                <span class="info-badge model-badge font-mono">USEF-TSE</span>
+                            </div>
+                            <audio controls src="audio/LIBRI2MIX_extrct.wav" preload="metadata"></audio>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Case S01 -->
+                <div class="tab-panel" id="tab-real-s01">
+                    <div class="showcase-meta">
+                        <h4>Real Speech Sample S01_P01_01</h4>
+                        <p>Real overlapping speech test. The model uses the enrollment audio as a guide to extract the target speaker's voice from the mixed channel.</p>
+                    </div>
+                    <div class="audio-grid">
+                        <div class="audio-card" data-track-name="S01_P01_01 - Input Mixture" data-track-type="Mixture">
+                            <div class="card-header">
+                                <span class="audio-label">Mixture Speech</span>
+                                <span class="info-badge font-mono">Input</span>
+                            </div>
+                            <audio controls src="audio/S01_P01_01_mix_mix.wav" preload="metadata"></audio>
+                        </div>
+                        <div class="audio-card" data-track-name="S01_P01_01 - Enrollment Speech" data-track-type="Enrollment">
+                            <div class="card-header">
+                                <span class="audio-label">Auxiliary Enrollment</span>
+                                <span class="info-badge font-mono">Reference</span>
+                            </div>
+                            <audio controls src="audio/S01_P01_01_mix_enrollment.wav" preload="metadata"></audio>
+                        </div>
+                        <div class="audio-card highlight" data-track-name="S01_P01_01 - Extracted Target" data-track-type="Extracted">
+                            <div class="card-header">
+                                <span class="audio-label">Extracted Target</span>
+                                <span class="info-badge model-badge font-mono">USEF-TSE</span>
+                            </div>
+                            <audio controls src="audio/S01_P01_01_mix_extcted.wav" preload="metadata"></audio>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Case S21 -->
+                <div class="tab-panel" id="tab-real-s21">
+                    <div class="showcase-meta">
+                        <h4>Real Speech Sample S21_P48_02</h4>
+                        <p>A challenging extraction environment. The extracted result showcases how high-frequency overlap is resolved.</p>
+                    </div>
+                    <div class="audio-grid">
+                        <div class="audio-card" data-track-name="S21_P48_02 - Input Mixture" data-track-type="Mixture">
+                            <div class="card-header">
+                                <span class="audio-label">Mixture Speech</span>
+                                <span class="info-badge font-mono">Input</span>
+                            </div>
+                            <audio controls src="audio/S21_P48_02_mix_mix.wav" preload="metadata"></audio>
+                        </div>
+                        <div class="audio-card" data-track-name="S21_P48_02 - Enrollment Speech" data-track-type="Enrollment">
+                            <div class="card-header">
+                                <span class="audio-label">Auxiliary Enrollment</span>
+                                <span class="info-badge font-mono">Reference</span>
+                            </div>
+                            <audio controls src="audio/S21_P48_02_mix_enrollment.wav" preload="metadata"></audio>
+                        </div>
+                        <div class="audio-card highlight" data-track-name="S21_P48_02 - Extracted Target" data-track-type="Extracted">
+                            <div class="card-header">
+                                <span class="audio-label">Extracted Target</span>
+                                <span class="info-badge model-badge font-mono">USEF-TSE</span>
+                            </div>
+                            <audio controls src="audio/S21_P48_02_mix_extect.wav.wav" preload="metadata"></audio>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Case M22 Hindi -->
+                <div class="tab-panel" id="tab-hindi-m22">
+                    <div class="showcase-meta">
+                        <h4>M22 Hindi Multi-Speaker Sample</h4>
+                        <p>Demonstrating cross-lingual generalized capability. The target speaker's Hindi speech is successfully isolated from the mixed recording utilizing the enrollment clip.</p>
+                    </div>
+                    <div class="audio-grid">
+                        <div class="audio-card" data-track-name="M22 Hindi - Input Mixture" data-track-type="Mixture">
+                            <div class="card-header">
+                                <span class="audio-label">Mixture Speech</span>
+                                <span class="info-badge font-mono">Input</span>
+                            </div>
+                            <audio controls src="audio/M22_Hindi.wav" preload="metadata"></audio>
+                        </div>
+                        <div class="audio-card" data-track-name="M22 Hindi - Enrollment Speech" data-track-type="Enrollment">
+                            <div class="card-header">
+                                <span class="audio-label">Auxiliary Enrollment</span>
+                                <span class="info-badge font-mono">Reference</span>
+                            </div>
+                            <audio controls src="audio/M22_enroll.wav" preload="metadata"></audio>
+                        </div>
+                        <div class="audio-card highlight" data-track-name="M22 Hindi - Extracted Target" data-track-type="Extracted">
+                            <div class="card-header">
+                                <span class="audio-label">Extracted Target</span>
+                                <span class="info-badge model-badge font-mono">USEF-TSE</span>
+                            </div>
+                            <audio controls src="audio/M22_Extraceted.wav" preload="metadata"></audio>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 5: Case S-Series -->
+                <div class="tab-panel" id="tab-s-series">
+                    <div class="showcase-meta">
+                        <h4>S-Series Speech Target Speaker Extraction</h4>
+                        <p>Showing speaker preservation quality on complex conversational speech with sudden level shifts.</p>
+                    </div>
+                    <div class="audio-grid">
+                        <div class="audio-grid-col-2">
+                            <div class="audio-card" data-track-name="S-Series - Input Mixture" data-track-type="Mixture">
+                                <div class="card-header">
+                                    <span class="audio-label">Mixture Speech</span>
+                                    <span class="info-badge font-mono">Input</span>
+                                </div>
+                                <audio controls src="audio/S_Mixture_Trimmed (1).wav" preload="metadata"></audio>
+                            </div>
+                            <div class="audio-card" data-track-name="S-Series - Enrollment Speech" data-track-type="Enrollment">
+                                <div class="card-header">
+                                    <span class="audio-label">Auxiliary Enrollment</span>
+                                    <span class="info-badge font-mono">Reference</span>
+                                </div>
+                                <audio controls src="audio/S_M3 (1).wav" preload="metadata"></audio>
+                            </div>
+                        </div>
+                        <div class="audio-card highlight" data-track-name="S-Series - Extracted Target" data-track-type="Extracted">
+                            <div class="card-header">
+                                <span class="audio-label">Extracted Target</span>
+                                <span class="info-badge model-badge font-mono">USEF-TSE</span>
+                            </div>
+                            <audio controls src="audio/S_extract.wav" preload="metadata"></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evaluation Results Section -->
+        <section class="section results-section">
+            <h2>Quantitative Evaluation</h2>
+            <p>Comparative metrics evaluating extraction accuracy and signal fidelity across different phases. Standard metrics like Scale-Invariant Signal-to-Noise Ratio (SI-SNR) and Perceptual Evaluation of Speech Quality (PESQ) indicate significant speech preservation improvements.</p>
+            
+            <div class="table-container">
+                <table class="metrics-table">
+                    <thead>
+                        <tr>
+                            <th>Evaluation Stage</th>
+                            <th>SDR (dB) &uarr;</th>
+                            <th>SI-SNR (dB) &uarr;</th>
+                            <th>PESQ &uarr;</th>
+                            <th>ESTOI &uarr;</th>
+                            <th>SIM &uarr;</th>
+                            <th>WER (%) &darr;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1. Input Mixture (Baseline)</td>
+                            <td>0.12</td>
+                            <td>0.08</td>
+                            <td>1.42</td>
+                            <td>0.458</td>
+                            <td>0.612</td>
+                            <td>78.4</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>2. USEF-TSE (Discriminative Output)</td>
+                            <td>12.84</td>
+                            <td>12.15</td>
+                            <td>2.89</td>
+                            <td>0.824</td>
+                            <td>0.895</td>
+                            <td>18.2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-legend">
+                <small>* <strong>SDR / SI-SNR</strong>: Signal Distortion/Noise Ratio (higher is better). <strong>PESQ</strong>: Perceptual Speech Quality (scale 1-4.5). <strong>SIM</strong>: Speaker similarity. <strong>WER</strong>: Word Error Rate from automatic transcription (lower is better).</small>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 USEF-TSE Project Team. Official code licensed under CC BY-NC 4.0 License.</p>
+            <p class="footer-subtext font-mono">Built for GitHub Pages showcase demonstration</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
