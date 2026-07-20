@@ -12,8 +12,8 @@
     --color-success: #2f855a;       /* Forest green */
     --color-success-light: #f0fff4; /* Light green highlight */
     
-    --border-color: #e2e8f0;
-    --border-dark: #cbd5e0;
+    --border-color: #cbd5e0;        /* Clearer border */
+    --border-light: #e2e8f0;
     
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-serif: 'Lora', Georgia, serif;
@@ -47,7 +47,7 @@ body {
 /* Header & Titles */
 .header {
     background-color: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-light);
     padding: 3rem 0;
     text-align: center;
 }
@@ -88,7 +88,7 @@ body {
     font-weight: 500;
     text-decoration: none;
     transition: var(--transition);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-light);
     background-color: var(--bg-secondary);
     color: var(--text-secondary);
 }
@@ -123,7 +123,7 @@ body {
 
 .section {
     background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-light);
     border-radius: 6px;
     padding: 2rem;
     margin-bottom: 2rem;
@@ -135,7 +135,7 @@ body {
     color: var(--color-primary);
     font-weight: 500;
     margin-bottom: 1.25rem;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-light);
     padding-bottom: 0.5rem;
 }
 
@@ -169,7 +169,7 @@ body {
     align-items: center;
     justify-content: space-between;
     background-color: var(--bg-primary);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-light);
     border-radius: 4px;
     padding: 1.5rem;
     margin: 1.5rem 0;
@@ -182,7 +182,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: var(--bg-secondary);
-    border: 1px solid var(--border-dark);
+    border: 1px solid var(--border-color);
     padding: 0.75rem 1.25rem;
     border-radius: 4px;
     min-width: 160px;
@@ -228,7 +228,7 @@ body {
 .case-block {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
 }
 
 .case-header-bar {
@@ -255,77 +255,86 @@ body {
 .case-desc-text {
     font-size: 0.95rem;
     color: var(--text-secondary);
-    margin-bottom: 0.5rem;
 }
 
 .case-divider {
     border: 0;
-    border-top: 1px solid var(--border-color);
-    margin: 0.5rem 0;
+    border-top: 1px solid var(--border-light);
+    margin: 1rem 0;
 }
 
-/* Audio Showcase Grid */
-.audio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.audio-card {
-    background-color: var(--bg-primary);
+/* Horizontal Case Grid Table Layout (Mimicking user screenshot) */
+.case-table {
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    padding: 1.25rem;
+    overflow: hidden;
+    margin-top: 0.75rem;
+}
+
+.case-headers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: #f3f4f6; /* light grey bar */
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.header-col {
+    padding: 0.6rem 0.5rem;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-col:last-child {
+    border-right: none;
+}
+
+.case-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: var(--bg-secondary);
+}
+
+.case-col {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    align-items: center;
+    padding: 0.75rem;
+    border-right: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
     transition: var(--transition);
 }
 
-.audio-card:hover {
-    border-color: var(--border-dark);
+.case-col:last-child {
+    border-right: none;
 }
 
-.audio-card.highlight {
+.case-col.highlight {
     background-color: var(--color-success-light);
-    border-color: #c6f6d5;
 }
 
-.audio-card.active-playing {
-    border-color: var(--color-accent);
-    background-color: #f7fafc;
+.case-col.active-playing {
+    background-color: var(--color-accent-light);
 }
 
-.audio-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    padding-bottom: 0.35rem;
-}
-
-/* Spectrogram Container & Image */
-.spectrogram-container {
-    width: 100%;
-    border: 1px solid var(--border-color);
-    background-color: #000000; /* dark background behind spectrogram for visual contrast */
-    border-radius: 4px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.spectrogram-img {
+/* Spectrogram Styling inside Columns */
+.spec-img {
     width: 100%;
     height: auto;
     display: block;
-    mix-blend-mode: normal;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--border-light);
+    border-radius: 2px;
 }
 
 audio {
     width: 100%;
-    height: 38px;
+    height: 36px;
     outline: none;
 }
 
@@ -356,7 +365,7 @@ audio {
 
 .metrics-table td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-light);
     color: var(--text-secondary);
 }
 
@@ -383,7 +392,7 @@ audio {
 /* Footer styling */
 .footer {
     background-color: var(--bg-secondary);
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-light);
     padding: 2.5rem 0;
     text-align: center;
     margin-top: 4rem;
@@ -423,5 +432,25 @@ audio {
     .workflow-arrow {
         transform: rotate(90deg);
         padding: 0.5rem 0;
+    }
+    
+    .case-headers, .case-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-col {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 0.4rem;
+    }
+    
+    .case-col {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem 0.5rem;
+    }
+    
+    .case-col:last-child {
+        border-bottom: none;
     }
 }

@@ -65,7 +65,7 @@
         <!-- Main Scrolling Showcase List -->
         <section class="section demo-section">
             <h2>Evaluation Showcases</h2>
-            <p class="section-desc">Compare the spectrograms and audio recordings of the input mixtures, auxiliary reference utterances (enrollment), and the extracted target speaker outputs across five test cases.</p>
+            <p class="section-desc">Visual and acoustic comparison of target speaker extraction across benchmark and real-world mixtures. All cases are presented below sequentially for ease of scrolling.</p>
             
             <div class="showcases-list">
                 <!-- Case 1: Libri2Mix -->
@@ -74,29 +74,27 @@
                         <h3>1. Libri2Mix Synthetic Benchmark</h3>
                         <span class="case-badge">Synthetic Benchmark</span>
                     </div>
-                    <p class="case-desc-text">A standard synthetic multi-speaker overlap test. The target speaker (<code>s1</code>) is separated from the overlapping voice using the reference s1 audio clip.</p>
+                    <p class="case-desc-text">A standard synthetic multi-speaker overlap test. The target speaker is separated from the overlapping voice using the reference audio clip.</p>
                     
-                    <div class="audio-grid">
-                        <div class="audio-card">
-                            <span class="audio-label">Mixture Input</span>
-                            <div class="spectrogram-container">
-                                <img src="images/LIBRI2MIX_mixture.png" alt="Libri2Mix Mixture Spectrogram" class="spectrogram-img">
-                            </div>
-                            <audio controls src="audio/LIBRI2MIX_mixture.wav" preload="metadata"></audio>
+                    <div class="case-table">
+                        <div class="case-headers">
+                            <div class="header-col">Mixture</div>
+                            <div class="header-col">Cue</div>
+                            <div class="header-col">USEF-TSE</div>
                         </div>
-                        <div class="audio-card">
-                            <span class="audio-label">Reference Target (s1)</span>
-                            <div class="spectrogram-container">
-                                <img src="images/LIBRI2MIX_s1.png" alt="Libri2Mix Reference Spectrogram" class="spectrogram-img">
+                        <div class="case-row">
+                            <div class="case-col">
+                                <img src="images/LIBRI2MIX_mixture.png" alt="Libri2Mix Mixture Spectrogram" class="spec-img">
+                                <audio controls src="audio/LIBRI2MIX_mixture.wav" preload="metadata"></audio>
                             </div>
-                            <audio controls src="audio/LIBRI2MIX_s1.wav" preload="metadata"></audio>
-                        </div>
-                        <div class="audio-card highlight">
-                            <span class="audio-label">Extracted Target (USEF-TSE)</span>
-                            <div class="spectrogram-container">
-                                <img src="images/LIBRI2MIX_extrct.png" alt="Libri2Mix Extracted Spectrogram" class="spectrogram-img">
+                            <div class="case-col">
+                                <img src="images/LIBRI2MIX_s1.png" alt="Libri2Mix Reference Spectrogram" class="spec-img">
+                                <audio controls src="audio/LIBRI2MIX_s1.wav" preload="metadata"></audio>
                             </div>
-                            <audio controls src="audio/LIBRI2MIX_extrct.wav" preload="metadata"></audio>
+                            <div class="case-col highlight">
+                                <img src="images/LIBRI2MIX_extrct.png" alt="Libri2Mix Extracted Spectrogram" class="spec-img">
+                                <audio controls src="audio/LIBRI2MIX_extrct.wav" preload="metadata"></audio>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -111,27 +109,25 @@
                     </div>
                     <p class="case-desc-text">Real speech overlapping mixture. The model isolates the target speaker based on the auxiliary reference enrollment clip.</p>
                     
-                    <div class="audio-grid">
-                        <div class="audio-card">
-                            <span class="audio-label">Mixture Input</span>
-                            <div class="spectrogram-container">
-                                <img src="images/S01_P01_01_mix_mix.png" alt="Case S01 Mixture Spectrogram" class="spectrogram-img">
-                            </div>
-                            <audio controls src="audio/S01_P01_01_mix_mix.wav" preload="metadata"></audio>
+                    <div class="case-table">
+                        <div class="case-headers">
+                            <div class="header-col">Mixture</div>
+                            <div class="header-col">Cue</div>
+                            <div class="header-col">USEF-TSE</div>
                         </div>
-                        <div class="audio-card">
-                            <span class="audio-label">Auxiliary Enrollment</span>
-                            <div class="spectrogram-container">
-                                <img src="images/S01_P01_01_mix_enrollment.png" alt="Case S01 Enrollment Spectrogram" class="spectrogram-img">
+                        <div class="case-row">
+                            <div class="case-col">
+                                <img src="images/S01_P01_01_mix_mix.png" alt="Case S01 Mixture Spectrogram" class="spec-img">
+                                <audio controls src="audio/S01_P01_01_mix_mix.wav" preload="metadata"></audio>
                             </div>
-                            <audio controls src="audio/S01_P01_01_mix_enrollment.wav" preload="metadata"></audio>
-                        </div>
-                        <div class="audio-card highlight">
-                            <span class="audio-label">Extracted Target (USEF-TSE)</span>
-                            <div class="spectrogram-container">
-                                <img src="images/S01_P01_01_mix_extcted.png" alt="Case S01 Extracted Spectrogram" class="spectrogram-img">
+                            <div class="case-col">
+                                <img src="images/S01_P01_01_mix_enrollment.png" alt="Case S01 Enrollment Spectrogram" class="spec-img">
+                                <audio controls src="audio/S01_P01_01_mix_enrollment.wav" preload="metadata"></audio>
                             </div>
-                            <audio controls src="audio/S01_P01_01_mix_extcted.wav" preload="metadata"></audio>
+                            <div class="case-col highlight">
+                                <img src="images/S01_P01_01_mix_extcted.png" alt="Case S01 Extracted Spectrogram" class="spec-img">
+                                <audio controls src="audio/S01_P01_01_mix_extcted.wav" preload="metadata"></audio>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -146,27 +142,25 @@
                     </div>
                     <p class="case-desc-text">Real overlapping recording environment. The extracted output spectrogram highlights the recovery of fine high-frequency vocal structures.</p>
                     
-                    <div class="audio-grid">
-                        <div class="audio-card">
-                            <span class="audio-label">Mixture Input</span>
-                            <div class="spectrogram-container">
-                                <img src="images/S21_P48_02_mix_mix.png" alt="Case S21 Mixture Spectrogram" class="spectrogram-img">
-                            </div>
-                            <audio controls src="audio/S21_P48_02_mix_mix.wav" preload="metadata"></audio>
+                    <div class="case-table">
+                        <div class="case-headers">
+                            <div class="header-col">Mixture</div>
+                            <div class="header-col">Cue</div>
+                            <div class="header-col">USEF-TSE</div>
                         </div>
-                        <div class="audio-card">
-                            <span class="audio-label">Auxiliary Enrollment</span>
-                            <div class="spectrogram-container">
-                                <img src="images/S21_P48_02_mix_enrollment.png" alt="Case S21 Enrollment Spectrogram" class="spectrogram-img">
+                        <div class="case-row">
+                            <div class="case-col">
+                                <img src="images/S21_P48_02_mix_mix.png" alt="Case S21 Mixture Spectrogram" class="spec-img">
+                                <audio controls src="audio/S21_P48_02_mix_mix.wav" preload="metadata"></audio>
                             </div>
-                            <audio controls src="audio/S21_P48_02_mix_enrollment.wav" preload="metadata"></audio>
-                        </div>
-                        <div class="audio-card highlight">
-                            <span class="audio-label">Extracted Target (USEF-TSE)</span>
-                            <div class="spectrogram-container">
-                                <img src="images/S21_P48_02_mix_extect.png" alt="Case S21 Extracted Spectrogram" class="spectrogram-img">
+                            <div class="case-col">
+                                <img src="images/S21_P48_02_mix_enrollment.png" alt="Case S21 Enrollment Spectrogram" class="spec-img">
+                                <audio controls src="audio/S21_P48_02_mix_enrollment.wav" preload="metadata"></audio>
                             </div>
-                            <audio controls src="audio/S21_P48_02_mix_extect.wav.wav" preload="metadata"></audio>
+                            <div class="case-col highlight">
+                                <img src="images/S21_P48_02_mix_extect.png" alt="Case S21 Extracted Spectrogram" class="spec-img">
+                                <audio controls src="audio/S21_P48_02_mix_extect.wav.wav" preload="metadata"></audio>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -181,27 +175,25 @@
                     </div>
                     <p class="case-desc-text">Testing generalizability in non-English speech. The target speaker's Hindi speech is successfully isolated utilizing the enrollment guide.</p>
                     
-                    <div class="audio-grid">
-                        <div class="audio-card">
-                            <span class="audio-label">Mixture Input</span>
-                            <div class="spectrogram-container">
-                                <img src="images/M22_Hindi.png" alt="Case M22 Mixture Spectrogram" class="spectrogram-img">
-                            </div>
-                            <audio controls src="audio/M22_Hindi.wav" preload="metadata"></audio>
+                    <div class="case-table">
+                        <div class="case-headers">
+                            <div class="header-col">Mixture</div>
+                            <div class="header-col">Cue</div>
+                            <div class="header-col">USEF-TSE</div>
                         </div>
-                        <div class="audio-card">
-                            <span class="audio-label">Auxiliary Enrollment</span>
-                            <div class="spectrogram-container">
-                                <img src="images/M22_enroll.png" alt="Case M22 Enrollment Spectrogram" class="spectrogram-img">
+                        <div class="case-row">
+                            <div class="case-col">
+                                <img src="images/M22_Hindi.png" alt="Case M22 Mixture Spectrogram" class="spec-img">
+                                <audio controls src="audio/M22_Hindi.wav" preload="metadata"></audio>
                             </div>
-                            <audio controls src="audio/M22_enroll.wav" preload="metadata"></audio>
-                        </div>
-                        <div class="audio-card highlight">
-                            <span class="audio-label">Extracted Target (USEF-TSE)</span>
-                            <div class="spectrogram-container">
-                                <img src="images/M22_Extraceted.png" alt="Case M22 Extracted Spectrogram" class="spectrogram-img">
+                            <div class="case-col">
+                                <img src="images/M22_enroll.png" alt="Case M22 Enrollment Spectrogram" class="spec-img">
+                                <audio controls src="audio/M22_enroll.wav" preload="metadata"></audio>
                             </div>
-                            <audio controls src="audio/M22_Extraceted.wav" preload="metadata"></audio>
+                            <div class="case-col highlight">
+                                <img src="images/M22_Extraceted.png" alt="Case M22 Extracted Spectrogram" class="spec-img">
+                                <audio controls src="audio/M22_Extraceted.wav" preload="metadata"></audio>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -216,27 +208,25 @@
                     </div>
                     <p class="case-desc-text">Demonstrates speaker preservation quality on complex conversational speech with level shifts.</p>
                     
-                    <div class="audio-grid">
-                        <div class="audio-card">
-                            <span class="audio-label">Mixture Input</span>
-                            <div class="spectrogram-container">
-                                <img src="images/S_Mixture_Trimmed (1).png" alt="S-Series Mixture Spectrogram" class="spectrogram-img">
-                            </div>
-                            <audio controls src="audio/S_Mixture_Trimmed (1).wav" preload="metadata"></audio>
+                    <div class="case-table">
+                        <div class="case-headers">
+                            <div class="header-col">Mixture</div>
+                            <div class="header-col">Cue</div>
+                            <div class="header-col">USEF-TSE</div>
                         </div>
-                        <div class="audio-card">
-                            <span class="audio-label">Auxiliary Enrollment</span>
-                            <div class="spectrogram-container">
-                                <img src="images/S_M3 (1).png" alt="S-Series Enrollment Spectrogram" class="spectrogram-img">
+                        <div class="case-row">
+                            <div class="case-col">
+                                <img src="images/S_Mixture_Trimmed (1).png" alt="S-Series Mixture Spectrogram" class="spec-img">
+                                <audio controls src="audio/S_Mixture_Trimmed (1).wav" preload="metadata"></audio>
                             </div>
-                            <audio controls src="audio/S_M3 (1).wav" preload="metadata"></audio>
-                        </div>
-                        <div class="audio-card highlight">
-                            <span class="audio-label">Extracted Target (USEF-TSE)</span>
-                            <div class="spectrogram-container">
-                                <img src="images/S_extract.png" alt="S-Series Extracted Spectrogram" class="spectrogram-img">
+                            <div class="case-col">
+                                <img src="images/S_M3 (1).png" alt="S-Series Enrollment Spectrogram" class="spec-img">
+                                <audio controls src="audio/S_M3 (1).wav" preload="metadata"></audio>
                             </div>
-                            <audio controls src="audio/S_extract.wav" preload="metadata"></audio>
+                            <div class="case-col highlight">
+                                <img src="images/S_extract.png" alt="S-Series Extracted Spectrogram" class="spec-img">
+                                <audio controls src="audio/S_extract.wav" preload="metadata"></audio>
+                            </div>
                         </div>
                     </div>
                 </div>

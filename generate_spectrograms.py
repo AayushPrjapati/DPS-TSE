@@ -15,26 +15,20 @@ def generate_spectrogram(audio_path, output_image_path):
         # Convert to mono numpy array
         y = wav.mean(dim=0).numpy()
         
-        # Create figure
-        fig, ax = plt.subplots(figsize=(4.5, 1.8), dpi=150)
+        # Create figure with wide and flat aspect ratio
+        fig, ax = plt.subplots(figsize=(5.0, 1.0), dpi=150)
         
-        # Plot spectrogram
-        # NFFT=512, noverlap=384 (hop_length=128)
-        ax.specgram(y, NFFT=512, Fs=sr, noverlap=384, cmap='magma', scale='dB')
+        # Disable axes completely
+        ax.axis('off')
         
-        # Clean up axes for a formal scientific look
-        ax.set_xlabel('Time (s)', fontsize=8)
-        ax.set_ylabel('Freq (Hz)', fontsize=8)
-        ax.tick_params(axis='both', which='major', labelsize=7)
+        # Plot spectrogram using viridis colormap as requested
+        ax.specgram(y, NFFT=512, Fs=sr, noverlap=384, cmap='viridis', scale='dB')
         
-        # Limit frequency display
-        if sr <= 8000:
-            ax.set_ylim(0, 4000)
-        else:
-            ax.set_ylim(0, min(8000, sr // 2))
-            
-        plt.tight_layout()
-        plt.savefig(output_image_path, bbox_inches='tight', pad_inches=0.05)
+        # Remove any excess margins
+        fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
+        
+        # Save as borderless image
+        plt.savefig(output_image_path, bbox_inches='tight', pad_inches=0)
         plt.close(fig)
         print(f"Saved: {output_image_path}")
     except Exception as e:
@@ -50,7 +44,6 @@ def main():
         if file.endswith('.wav'):
             audio_path = os.path.join(audio_dir, file)
             # Create a corresponding png filename
-            # Note: handle cases like .wav.wav nicely
             clean_name = file
             if clean_name.endswith('.wav.wav'):
                 clean_name = clean_name[:-4]
